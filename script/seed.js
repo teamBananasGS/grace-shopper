@@ -1,8 +1,7 @@
 'use strict'
 
 const db = require('../server/db')
-const {User} = require('../server/db/models')
-const Products = require('../server/db/models/products')
+const {User, Products, PaymentMethod} = require('../server/db/models')
 
 async function seed() {
   await db.sync({force: true})
@@ -10,16 +9,12 @@ async function seed() {
 
   const users = await Promise.all([
     User.create({
-      firstName: 'Gary',
-      lastName: 'Mendez',
-      email: 'cody@email.com',
+      firstName: 'Bruce',
+      lastName: 'Wayne',
+      email: 'the_bat_cave@gmail.com',
+      address: 'Wayne Manor, 1007 Mountain Drive, Gotham',
+      telephone: 1234567,
       password: '123'
-    }),
-    User.create({
-      firstName: 'ken',
-      lastName: 'bill',
-      email: 'kenBill@email.com',
-      password: '143'
     })
   ])
 
@@ -29,12 +24,34 @@ async function seed() {
       price: 500.0,
       category: 'Suit',
       stock: 56,
-      description: ' A suit that gives you power'
+      description: 'A suit that gives you power'
+    }),
+    Products.create({
+      name: 'Power Watch',
+      price: 1500.0,
+      category: 'Watch',
+      stock: 56,
+      description: 'A watch that gives you power'
+    }),
+    Products.create({
+      name: 'Flexing Shoe',
+      price: 250.0,
+      category: 'Shoe',
+      stock: 15,
+      description: 'A shoe that looks cool'
+    })
+  ])
+
+  const payments = await Promise.all([
+    PaymentMethod.create({
+      id: 1,
+      name: 'Credit Card'
     })
   ])
 
   console.log(`seeded ${products.length} products`)
   console.log(`seeded ${users.length} users`)
+  console.log(`seeded ${payments.length} payment methods`)
   console.log(`seeded successfully`)
 }
 
