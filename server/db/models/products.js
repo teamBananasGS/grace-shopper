@@ -14,6 +14,7 @@ const Products = db.define('products', {
     allowNull: false,
     validate: {
       notEmpty: true,
+      isDecimal: true,
       min: 1.0,
       max: 100000.0
     }
@@ -47,3 +48,12 @@ const Products = db.define('products', {
 })
 
 module.exports = Products
+
+// InstanceMethods
+Products.prototype.correctProduct = function(productName) {
+  let arr = productName.split(' ')
+  if (arr.includes('Suit')) {
+    return true
+  }
+  return false
+}
