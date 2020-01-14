@@ -14,8 +14,7 @@ User.hasMany(Order)
 Order.belongsTo(User)
 Products.belongsToMany(Order, {through: ProductOrder})
 Order.belongsToMany(Products, {through: ProductOrder})
-PaymentMethod.belongsTo(Order)
-Order.hasOne(PaymentMethod)
+Order.belongsTo(PaymentMethod)
 
 /**
  * We'll export all of our models here, so that any time a module needs a model,
