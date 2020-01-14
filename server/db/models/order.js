@@ -6,9 +6,9 @@ const Order = db.define('order', {
     type: Sequelize.INTEGER,
     autoIncrement: true,
     primaryKey: true,
+    allowNull: false,
     validate: {
-      allowNull: false,
-      isEmpty: false
+      notEmpty: true
     }
   }
 })

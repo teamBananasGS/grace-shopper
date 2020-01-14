@@ -14,7 +14,7 @@ const PaymentMethod = require('./paymentMethod')
  */
 User.hasMany(Order)
 User.belongsTo(ShoppingCart, {as: 'userId'})
-ShoppingCart.hasMany(ShoppingCartDetails)
+User.belongsTo(Products, {as: 'itemId'})
 Order.belongsTo(User)
 Products.belongsToMany(Order, {through: ProductOrder})
 Order.belongsToMany(Products, {through: ProductOrder})

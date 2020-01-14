@@ -6,16 +6,16 @@ const PaymentMethod = db.define('paymentMethod', {
     type: Sequelize.INTEGER,
     autoIncrement: true,
     primaryKey: true,
+    allowNull: false,
     validate: {
-      allowNull: false,
-      isEmpty: false
+      notEmpty: true
     }
   },
   name: {
     type: Sequelize.STRING,
+    allowNull: false,
     validate: {
-      allowNull: false,
-      isEmpty: false
+      notEmpty: true
     }
   }
 })
