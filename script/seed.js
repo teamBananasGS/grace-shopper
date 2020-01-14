@@ -16,6 +16,7 @@ async function seed() {
   const products = await Promise.all([
     Products.create({
       name: 'Power Suit',
+      price: 500.0,
       category: 'Suit',
       stock: 56,
       description: ' A suit that gives you power'
