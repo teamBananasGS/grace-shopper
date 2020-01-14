@@ -7,7 +7,7 @@ describe('Products model', () => {
     return db.sync({force: true})
   })
 
-  describe('correctCategory', () => {
+  describe('Correct Category', () => {
     let flameSuit
 
     beforeEach(async () => {
@@ -20,30 +20,30 @@ describe('Products model', () => {
       })
     })
 
-    it('returns true if the product is a suit', () => {
+    it('returns true if product category is a Suit', () => {
       expect(flameSuit.category).to.be.equal('Suit')
     })
 
-    it('returns true if the price has two decimals', () => {
-      expect(flameSuit.price).to.be.equal('200.00')
+    it('returns true if the product price has two decimals', () => {
+      expect(Number(flameSuit.price)).to.be.equal(200.0)
     })
   })
 
-  // describe('Is Not Cheap', () => {
-  //   let waterSuit
+  describe('Is Not Cheap', () => {
+    let waterSuit
 
-  //   beforeEach(async () => {
-  //     waterSuit = await Products.create({
-  //       name: 'Water Suit',
-  //       price: 4,
-  //       category: 'Suit',
-  //       stock: 30,
-  //       description: 'This water suit will give you fish-like gills',
-  //     })
-  //   })
+    beforeEach(async () => {
+      waterSuit = await Products.create({
+        name: 'Water Suit',
+        price: 4.0,
+        category: 'Suit',
+        stock: 30,
+        description: 'This water suit will give you fish-like gills'
+      })
+    })
 
-  //   it('returns true if suit cost is atleast 0.01', () => {
-  //     expect(waterSuit.price).to.be.greaterThan('3.00')
-  //   })
-  // })
+    it('returns true if suit cost is atleast 1.00', () => {
+      expect(Number(waterSuit.price)).to.be.greaterThan(1.0)
+    })
+  })
 })
