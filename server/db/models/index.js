@@ -1,6 +1,8 @@
 const User = require('./user')
 const Products = require('./products')
 const Order = require('./order')
+const ShoppingCart = require('./shoppingCart')
+const ShoppingCartDetails = require('./shoppingCartDetails')
 const ProductOrder = require('./productOrder')
 const PaymentMethod = require('./paymentMethod')
 
@@ -11,6 +13,8 @@ const PaymentMethod = require('./paymentMethod')
  *    BlogPost.belongsTo(User)
  */
 User.hasMany(Order)
+User.belongsTo(ShoppingCart, {as: 'userId'})
+ShoppingCart.hasMany(ShoppingCartDetails)
 Order.belongsTo(User)
 Products.belongsToMany(Order, {through: ProductOrder})
 Order.belongsToMany(Products, {through: ProductOrder})
@@ -27,5 +31,7 @@ module.exports = {
   Products,
   Order,
   ProductOrder,
-  PaymentMethod
+  PaymentMethod,
+  ShoppingCart,
+  ShoppingCartDetails
 }

@@ -9,10 +9,6 @@ const ShoppingCart = db.define('shoppingcart', {
   },
   userId: {
     type: Sequelize.INTEGER
-  },
-  isGuest: {
-    type: Sequelize.BOOLEAN,
-    defaultValue: false
   }
 })
 
