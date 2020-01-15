@@ -10,7 +10,16 @@ const Order = db.define('order', {
     validate: {
       notEmpty: true
     }
-  }
+  },
+  status: {
+    type: Sequelize.STRING,
+    allowNull: false,
+    validate: {
+      isIn: [['Pending', 'Complete', 'Canceled']]
+    },
+    defaultValue: 'Pending'
+  },
+  datePurchased: Sequelize.DATEONLY
 })
 
 module.exports = Order

@@ -1,16 +1,16 @@
 const Sequelize = require('sequelize')
 const db = require('../db')
 
-const ProductOrder = db.define('productOrder', {
+const OrderProduct = db.define('orderProduct', {
   quantityPurchased: {
     type: Sequelize.INTEGER
   },
-  totalPrice: {
-    type: Sequelize.DECIMAL(10, 2),
+  pricePerItem: {
+    type: Sequelize.INTEGER,
     validate: {
-      isDecimal: true
+      notEmpty: true
     }
   }
 })
 
-module.exports = ProductOrder
+module.exports = OrderProduct

@@ -3,11 +3,9 @@
 const db = require('../server/db')
 const {
   User,
-  Products,
+  Product,
   PaymentMethod,
-  ShoppingCart,
-  ShoppingCartDetails,
-  ProductOrder,
+  OrderProduct,
   Order
 } = require('../server/db/models')
 
@@ -34,22 +32,22 @@ async function seed() {
     })
   ])
 
-  const products = await Promise.all([
-    Products.create({
+  const product = await Promise.all([
+    Product.create({
       name: 'Power Suit',
       price: 500.0,
       category: 'Suit',
       stock: 56,
       description: 'A suit that gives you power'
     }),
-    Products.create({
+    Product.create({
       name: 'Power Watch',
       price: 1500.0,
       category: 'Watch',
       stock: 10,
       description: 'A watch that gives you power'
     }),
-    Products.create({
+    Product.create({
       name: 'Flexing Shoe',
       price: 250.0,
       category: 'Shoe',
@@ -70,61 +68,32 @@ async function seed() {
     })
   ])
 
-  const cart = await Promise.all([
-    ShoppingCart.create({
-      userId: 1
-    })
-  ])
-
-  const cartDetails = await Promise.all([
-    ShoppingCartDetails.create({
-      productId: 1,
-      shoppingcartId: 1,
-      itemQuantity: 3,
-      itemPrice: 500,
-      totalPrice: 1500
-    }),
-    ShoppingCartDetails.create({
-      productId: 2,
-      shoppingcartId: 1,
-      itemQuantity: 1,
-      itemPrice: 1500,
-      totalPrice: 1500
-    }),
-    ShoppingCartDetails.create({
-      productId: 3,
-      shoppingcartId: 1,
-      itemQuantity: 2,
-      itemPrice: 250,
-      totalPrice: 500
-    })
-  ])
-
   const order = await Promise.all([
     Order.create({
       userId: 1,
-      paymentMethodId: 1
+      paymentMethodId: 1,
+      status: 'Complete'
     })
   ])
 
-  const productOrder = await Promise.all([
-    ProductOrder.create({
+  const orderProducts = await Promise.all([
+    OrderProduct.create({
       productId: 1,
       orderId: 1,
       quantityPurchased: 3,
-      totalPrice: 1500
+      pricePerItem: 500
     }),
-    ProductOrder.create({
+    OrderProduct.create({
       productId: 2,
       orderId: 1,
       quantityPurchased: 1,
-      totalPrice: 1500
+      pricePerItem: 1500
     }),
-    ProductOrder.create({
+    OrderProduct.create({
       productId: 3,
       orderId: 1,
       quantityPurchased: 2,
-      totalPrice: 500
+      pricePerItem: 250
     })
   ])
 
