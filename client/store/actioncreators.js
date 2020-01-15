@@ -23,11 +23,11 @@ export const loadAllProducts = function() {
       .then(res => res.data)
       .then(products => {
         const action = allProducts(products)
+        dispatch(action)
       })
       .catch(err => console.error(err))
   }
 }
-     
 
 export const loadSingleProduct = function(productId, category) {
   return function(dispatch) {
