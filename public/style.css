@@ -1,3 +1,6 @@
+html {
+  scroll-behavior: smooth;
+}
 body {
   font-family: sans-serif;
 }
@@ -12,10 +15,72 @@ label {
 
 nav a {
   display: inline-block;
-  margin: 1em;
+  margin: 2em;
+  color: rgb(192, 189, 189);
+  padding-left: 75px;
 }
 
 form div {
   margin: 1em;
   display: inline-block;
+}
+
+nav {
+  display: flex;
+  flex-direction: row;
+  background-color: rgb(56, 55, 55);
+}
+
+#powerSuitsTitle {
+  background-color: rgb(216, 212, 212);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  font-family: 'Arial Black', Gadget, sans-serif;
+}
+
+.Quote {
+  background-color: rgb(216, 212, 212);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  font-family: 'Arial Black', Gadget, sans-serif;
+  margin-top: 50px;
+}
+
+img {
+  width: 100%;
+}
+
+.productHolder {
+  height: 500px;
+  width: 100%;
+}
+.leftpic {
+  float: left;
+  height: 400px;
+  width: 350px;
+  padding-top: 4%;
+  padding-left: 4%;
+}
+.midpic {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  float: left;
+  position: relative;
+  left: 45%;
+  margin-top: 50px;
+  margin-left: -500px;
+  height: 400px;
+  width: 340px;
+}
+.rightpic {
+  float: right;
+  height: 400px;
+  width: 350px;
+  margin-left: -50px;
+  padding-right: 4%;
 }
