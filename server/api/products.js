@@ -12,58 +12,17 @@ router.get('/', async (req, res, next) => {
   }
 })
 
-// SERVES ALL SUITS
-// router.get('/suits', async (req, res, next) => {
-//   try {
-//     const suitCategory = await Product.findAll({
-//       where: {
-//         category: 'Suit'
-//       }
-//     })
-//     res.json(suitCategory)
-//   } catch (err) {
-//     next(err)
-//   }
-// })
-
-// // SERVES ALL WATCHES
-// router.get('/watches', async (req, res, next) => {
-//   try {
-//     const watchCategory = await Product.findAll({
-//       where: {
-//         category: 'Watch'
-//       }
-//     })
-//     res.json(watchCategory)
-//   } catch (err) {
-//     next(err)
-//   }
-// })
-
-// // SERVES ALL SHOES
-// router.get('/shoes', async (req, res, next) => {
-//   try {
-//     const shoeCategory = await Product.findAll({
-//       where: {
-//         category: 'Shoe'
-//       }
-//     })
-//     res.json(shoeCategory)
-//   } catch (err) {
-//     next(err)
-//   }
-// })
-
-// // SERVES ONE PRODUCT BY ID
-// router.get('/:id', async (req, res, next) => {
-//   try {
-//     const oneProduct = await Product.findOne({
-//       where: {
-//         id: req.params.id
-//       }
-//     })
-//     res.send(oneProduct)
-//   } catch (err) {
-//     next(err)
-//   }
-// })
+// SERVES ONE PRODUCT BY ID
+router.get('/:category/:productId', async (req, res, next) => {
+  try {
+    const singleProduct = await Product.findOne({
+      where: {
+        category: req.params.category,
+        id: req.params.productId
+      }
+    })
+    res.send(singleProduct)
+  } catch (err) {
+    next(err)
+  }
+})
