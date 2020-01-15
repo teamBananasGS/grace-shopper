@@ -11,7 +11,7 @@ describe('User routes', () => {
     return db.sync({force: true})
   })
 
-  describe('/api/users/', () => {
+  describe('/api/users', () => {
     const kensEmail = 'kenBill@email.com'
 
     beforeEach(() => {
