@@ -36,21 +36,21 @@ async function seed() {
     Product.create({
       name: 'Power Suit',
       price: 500.0,
-      category: 'Suit',
+      category: 'suit',
       stock: 56,
       description: 'A suit that gives you power'
     }),
     Product.create({
       name: 'Power Watch',
       price: 1500.0,
-      category: 'Watch',
+      category: 'watch',
       stock: 10,
       description: 'A watch that gives you power'
     }),
     Product.create({
       name: 'Flexing Shoe',
       price: 250.0,
-      category: 'Shoe',
+      category: 'shoe',
       stock: 15,
       description: 'A shoe that looks cool'
     })

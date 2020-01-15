@@ -25,6 +25,20 @@ form div {
   display: inline-block;
 }
 
+#selectedProductContainer {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+#selectedProductContainer img {
+  width: 50%;
+}
+
+.addtocartButton {
+  font-family: Helvetica, sans-serif;
+  font-size: 0.9em;
+}
+
 nav {
   display: flex;
   flex-direction: row;

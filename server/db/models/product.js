@@ -23,7 +23,7 @@ const Product = db.define('product', {
     allowNull: false,
     validate: {
       notEmpty: true,
-      isIn: [['Suit', 'Watch', 'Shoe']]
+      isIn: [['suit', 'watch', 'shoe']]
     }
   },
   stock: {
