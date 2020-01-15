@@ -4,9 +4,9 @@ import {Link} from 'react-router-dom'
 import {loadAllProducts} from '../store/actioncreators'
 
 class AllProducts extends Component {
-  // componentDidMount() {
-  //     this.props.onLoadAllProducts()
-  // }
+  componentDidMount() {
+    this.props.onLoadAllProducts()
+  }
 
   // handleToggleForm() {
   //     this.setState({
@@ -19,21 +19,18 @@ class AllProducts extends Component {
     // console.log(allProducts)
     return (
       <div>
-        Hello
-        {/* {
-        allProducts.map(product => {
+        {allProducts.map(product => {
           return (
-            <div className='products' key={product.id}>
+            <div className="products" key={product.id}>
               <ul>
-              <p>
-                <Link to={`/products/${product.id}`}>{product.name}</Link>   
-              </p>
+                <p>
+                  <Link to={`/products/${product.id}`}>{product.name}</Link>
+                </p>
                 <img src={product.imageUrl} />
               </ul>
             </div>
           )
-        })
-        } */}
+        })}
       </div>
     )
   }

@@ -16,7 +16,7 @@ ReactDOM.render(
     <Router history={history}>
       <Route exact path="/" component={App} />
       <Route exact path="/home" component={userHome} />
-      {/* <Route exact path="/products" component={AllProducts} /> */}
+      <Route exact path="/products" component={AllProducts} />
     </Router>
   </Provider>,
   document.getElementById('app')
