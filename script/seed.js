@@ -1,7 +1,15 @@
 'use strict'
 
 const db = require('../server/db')
-const {User, Products, PaymentMethod} = require('../server/db/models')
+const {
+  User,
+  Products,
+  PaymentMethod,
+  ShoppingCart,
+  ShoppingCartDetails,
+  ProductOrder,
+  Order
+} = require('../server/db/models')
 
 async function seed() {
   await db.sync({force: true})
@@ -11,8 +19,16 @@ async function seed() {
     User.create({
       firstName: 'Bruce',
       lastName: 'Wayne',
-      email: 'the_bat_cave@gmail.com',
+      email: 'bat@gmail.com',
       address: 'Wayne Manor, 1007 Mountain Drive, Gotham',
+      telephone: 1234567,
+      password: '123'
+    }),
+    User.create({
+      firstName: 'John',
+      lastName: 'Doe',
+      email: 'abc@gmail.com',
+      address: '123 ABC Street',
       telephone: 1234567,
       password: '123'
     })
@@ -30,7 +46,7 @@ async function seed() {
       name: 'Power Watch',
       price: 1500.0,
       category: 'Watch',
-      stock: 56,
+      stock: 10,
       description: 'A watch that gives you power'
     }),
     Products.create({
@@ -44,14 +60,74 @@ async function seed() {
 
   const payments = await Promise.all([
     PaymentMethod.create({
-      id: 1,
       name: 'Credit Card'
+    }),
+    PaymentMethod.create({
+      name: 'Venmo'
+    }),
+    PaymentMethod.create({
+      name: 'PayPal'
     })
   ])
 
-  console.log(`seeded ${products.length} products`)
-  console.log(`seeded ${users.length} users`)
-  console.log(`seeded ${payments.length} payment methods`)
+  const cart = await Promise.all([
+    ShoppingCart.create({
+      userId: 1
+    })
+  ])
+
+  const cartDetails = await Promise.all([
+    ShoppingCartDetails.create({
+      productId: 1,
+      shoppingcartId: 1,
+      itemQuantity: 3,
+      itemPrice: 500,
+      totalPrice: 1500
+    }),
+    ShoppingCartDetails.create({
+      productId: 2,
+      shoppingcartId: 1,
+      itemQuantity: 1,
+      itemPrice: 1500,
+      totalPrice: 1500
+    }),
+    ShoppingCartDetails.create({
+      productId: 3,
+      shoppingcartId: 1,
+      itemQuantity: 2,
+      itemPrice: 250,
+      totalPrice: 500
+    })
+  ])
+
+  const order = await Promise.all([
+    Order.create({
+      userId: 1,
+      paymentMethodId: 1
+    })
+  ])
+
+  const productOrder = await Promise.all([
+    ProductOrder.create({
+      productId: 1,
+      orderId: 1,
+      quantityPurchased: 3,
+      totalPrice: 1500
+    }),
+    ProductOrder.create({
+      productId: 2,
+      orderId: 1,
+      quantityPurchased: 1,
+      totalPrice: 1500
+    }),
+    ProductOrder.create({
+      productId: 3,
+      orderId: 1,
+      quantityPurchased: 2,
+      totalPrice: 500
+    })
+  ])
+
   console.log(`seeded successfully`)
 }
 
