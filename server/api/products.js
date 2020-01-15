@@ -64,7 +64,6 @@ router.get('/:category/:productId', async (req, res, next) => {
         id: req.params.productId
       }
     })
-    console.log(singleProduct)
     res.send(singleProduct)
   } catch (err) {
     next(err)

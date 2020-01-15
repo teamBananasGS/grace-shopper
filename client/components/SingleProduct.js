@@ -11,20 +11,26 @@ class SingleProduct extends React.Component {
   render() {
     const selectedProduct = this.props.selectedProduct
     console.log(selectedProduct)
-    return (
+    return selectedProduct ? (
       <div>
         <Navbar />
-        <div>
+        <div id="selectedProductContainer">
           <img src={selectedProduct.imageUrl} />
-        </div>
-        <div>
-          <h1>{selectedProduct.name}</h1>
-          <span>Description: </span>
-          <p>{selectedProduct.description}</p>
-          <span>Price: </span>
-          <span>{`$${selectedProduct.price} USD`}</span>
+          <div>
+            <h1>{selectedProduct.name}</h1>
+            <span>Description</span>
+            <p>{selectedProduct.description}</p>
+            <p>{`Price: $${selectedProduct.price} USD`}</p>
+            <div>
+              <button type="submit" className="addtocartButton">
+                Add To Cart
+              </button>
+            </div>
+          </div>
         </div>
       </div>
+    ) : (
+      <h1>Cannot find page</h1>
     )
   }
 }
