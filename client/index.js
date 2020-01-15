@@ -5,7 +5,7 @@ import {Router, Route} from 'react-router-dom'
 import history from './history'
 import store from './store'
 import App from './app'
-import Products from './components/Products'
+import AllProducts from './components/allproducts'
 import userHome from './components/user-home'
 
 // establishes socket connection
@@ -16,7 +16,7 @@ ReactDOM.render(
     <Router history={history}>
       <Route exact path="/" component={App} />
       <Route exact path="/home" component={userHome} />
-      <Route exact path="/products" component={Products} />
+      {/* <Route exact path="/products" component={AllProducts} /> */}
     </Router>
   </Provider>,
   document.getElementById('app')
