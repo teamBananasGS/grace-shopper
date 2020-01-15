@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize')
 const db = require('../db')
 
-const Products = db.define('products', {
+const Product = db.define('product', {
   name: {
     type: Sequelize.STRING,
     allowNull: false,
@@ -10,13 +10,12 @@ const Products = db.define('products', {
     }
   },
   price: {
-    type: Sequelize.DECIMAL(10, 2),
+    type: Sequelize.INTEGER,
     allowNull: false,
     validate: {
       notEmpty: true,
-      isDecimal: true,
-      min: 1.0,
-      max: 100000.0
+      min: 5,
+      max: 10000
     }
   },
   category: {
@@ -47,13 +46,4 @@ const Products = db.define('products', {
   }
 })
 
-module.exports = Products
-
-// InstanceMethods
-Products.prototype.correctProduct = function(productName) {
-  let arr = productName.split(' ')
-  if (arr.includes('Suit')) {
-    return true
-  }
-  return false
-}
+module.exports = Product

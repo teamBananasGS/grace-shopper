@@ -1,6 +1,6 @@
 const {expect} = require('chai')
 const db = require('../index')
-const Products = db.model('products')
+const Product = db.model('product')
 
 describe('Products model', () => {
   beforeEach(() => {
@@ -11,7 +11,7 @@ describe('Products model', () => {
     let flameSuit
 
     beforeEach(async () => {
-      flameSuit = await Products.create({
+      flameSuit = await Product.create({
         name: 'Fire Suit',
         price: 200.0,
         category: 'Suit',
@@ -33,7 +33,7 @@ describe('Products model', () => {
     let waterSuit
 
     beforeEach(async () => {
-      waterSuit = await Products.create({
+      waterSuit = await Product.create({
         name: 'Water Suit',
         price: 4.0,
         category: 'Suit',
