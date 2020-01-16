@@ -1,5 +1,6 @@
 import axios from 'axios'
 import history from '../history'
+import {loadUserCart} from './actioncreators'
 
 /**
  * ACTION TYPES
@@ -40,6 +41,7 @@ export const auth = (email, password, method) => async dispatch => {
 
   try {
     dispatch(getUser(res.data))
+    dispatch(loadUserCart(res.data.id))
     history.push('/')
   } catch (dispatchOrHistoryErr) {
     console.error(dispatchOrHistoryErr)
