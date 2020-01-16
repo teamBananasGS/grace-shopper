@@ -1,17 +1,10 @@
 const router = require('express').Router()
-const {
-  User,
-  Product,
-  Order,
-  OrderProduct,
-  PaymentMethod,
-  ProductKey
-} = require('../db/models/')
+const {Order, OrderProduct} = require('../db/models')
 
 module.exports = router
 
 // SERVES UP USER CART
-router.get('/cart/:userId', async (req, res, next) => {
+router.get('/:userId', async (req, res, next) => {
   try {
     const user = req.params.userId
     const cartProducts = await Order.findAll({
