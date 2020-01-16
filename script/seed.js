@@ -119,8 +119,7 @@ async function seed() {
   const order = await Promise.all([
     Order.create({
       userId: 1,
-      paymentMethodId: 1,
-      status: 'Complete'
+      paymentMethodId: 1
     })
   ])
 

@@ -15,9 +15,9 @@ const Order = db.define('order', {
     type: Sequelize.STRING,
     allowNull: false,
     validate: {
-      isIn: [['Pending', 'Complete', 'Canceled']]
+      isIn: [['pending', 'complete', 'canceled']]
     },
-    defaultValue: 'Pending'
+    defaultValue: 'pending'
   },
   datePurchased: Sequelize.DATEONLY
 })

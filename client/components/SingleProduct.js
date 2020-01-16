@@ -10,7 +10,7 @@ class SingleProduct extends React.Component {
 
   render() {
     const selectedProduct = this.props.selectedProduct
-    console.log(selectedProduct)
+    console.log(this.props.user)
     return selectedProduct ? (
       <div>
         <Navbar />
@@ -37,7 +37,8 @@ class SingleProduct extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    selectedProduct: state.selectedProduct
+    selectedProduct: state.selectedProduct,
+    user: state.user
   }
 }
 
