@@ -3,6 +3,7 @@ import Axios from 'axios'
 export const GET_ALL_PRODUCTS = 'GET_ALL_PRODUCTS'
 export const GET_SINGLE_PRODUCT = 'GET_SINGLE_PRODUCT'
 export const GET_SINGLE_CATEGORY = 'GET_SINGLE_CATEGORY'
+export const GET_USER_CART = 'GET_USER_CART'
 
 export const getSingleProduct = productId => {
   return {
@@ -22,6 +23,13 @@ export const allProducts = products => {
   return {
     type: GET_ALL_PRODUCTS,
     allProducts: products
+  }
+}
+
+export const getUserCart = cart => {
+  return {
+    type: GET_SINGLE_PRODUCT,
+    userCart: cart
   }
 }
 
@@ -55,6 +63,18 @@ export const loadSingleCategory = function(category) {
       .then(res => res.data)
       .then(singleCat => {
         const action = getSingleCategory(singleCat)
+        dispatch(action)
+      })
+      .catch(err => console.error(err))
+  }
+}
+
+export const loadUserCart = function(userId) {
+  return function(dispatch) {
+    Axios.get(`/api/cart/${userId}`)
+      .then(res => res.data)
+      .then(cartDetails => {
+        const action = getUserCart(cartDetails)
         dispatch(action)
       })
       .catch(err => console.error(err))
