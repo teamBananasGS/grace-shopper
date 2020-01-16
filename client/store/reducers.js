@@ -1,7 +1,8 @@
 import {
   GET_ALL_PRODUCTS,
   GET_SINGLE_CATEGORY,
-  GET_SINGLE_PRODUCT
+  GET_SINGLE_PRODUCT,
+  GET_USER_CART
 } from './actioncreators'
 
 export const allProductsReducer = (state = [], action) => {
@@ -27,6 +28,15 @@ export const singleProductReducer = (state = {}, action) => {
   switch (action.type) {
     case GET_SINGLE_PRODUCT:
       return action.selectedProduct
+    default:
+      return state
+  }
+}
+
+export const userCartReducer = (state = [], action) => {
+  switch (action.type) {
+    case GET_USER_CART:
+      return action.userCart
     default:
       return state
   }
