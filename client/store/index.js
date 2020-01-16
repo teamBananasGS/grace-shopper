@@ -6,14 +6,16 @@ import user from './user'
 import {
   singleProductReducer,
   allProductsReducer,
-  singleCategoryReducer
+  singleCategoryReducer,
+  userCartReducer
 } from './reducers'
 
 const reducer = combineReducers({
   user,
   allProducts: allProductsReducer,
   selectedCategory: singleCategoryReducer,
-  selectedProduct: singleProductReducer
+  selectedProduct: singleProductReducer,
+  userCart: userCartReducer
 })
 
 const middleware = composeWithDevTools(

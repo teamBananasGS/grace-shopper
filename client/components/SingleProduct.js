@@ -10,7 +10,6 @@ class SingleProduct extends React.Component {
 
   render() {
     const selectedProduct = this.props.selectedProduct
-    console.log(this.props.user)
     return selectedProduct ? (
       <div>
         <Navbar />

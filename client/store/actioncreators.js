@@ -28,7 +28,7 @@ export const allProducts = products => {
 
 export const getUserCart = cart => {
   return {
-    type: GET_SINGLE_PRODUCT,
+    type: GET_USER_CART,
     userCart: cart
   }
 }
