@@ -16,10 +16,15 @@ import './socket'
 ReactDOM.render(
   <Provider store={store}>
     <Router history={history}>
-      <Route exact path="/" component={App} />
-      <Route exact path="/home" component={userHome} />
-      <Route exact path="/products" component={AllProducts} />
-      <Route exact path="/products/:category" component={SingleCategory} />
+      <Route exact path="/" component={App} user={store.user} />
+      <Route exact path="/home" component={userHome} user={store.user} />
+      <Route exact path="/products" component={AllProducts} user={store.user} />
+      <Route
+        exact
+        path="/products/:category"
+        component={SingleCategory}
+        user={store.user}
+      />
       <Route
         exact
         path="/products/:category/:productId"

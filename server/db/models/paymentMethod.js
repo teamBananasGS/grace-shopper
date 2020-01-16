@@ -12,11 +12,11 @@ const PaymentMethod = db.define('paymentMethod', {
     }
   },
   name: {
-    type: Sequelize.STRING
-    // allowNull: false,
-    // validate: {
-    //   notEmpty: true
-    // }
+    type: Sequelize.STRING,
+    allowNull: false,
+    validate: {
+      notEmpty: true
+    }
   }
 })
 
