@@ -6,7 +6,8 @@ const {
   Product,
   PaymentMethod,
   OrderProduct,
-  Order
+  Order,
+  ProductKey
 } = require('../server/db/models')
 
 async function seed() {
@@ -29,6 +30,26 @@ async function seed() {
       address: '123 ABC Street',
       telephone: 1234567,
       password: '123'
+    }),
+    User.create({
+      firstName: 'Lois',
+      lastName: 'Lane',
+      email: 'lois@gmail.com',
+      address: 'Daily Planet',
+      telephone: 1234567,
+      password: '123'
+    })
+  ])
+
+  const productKey = await Promise.all([
+    ProductKey.create({
+      product: 'watch'
+    }),
+    ProductKey.create({
+      product: 'suit'
+    }),
+    ProductKey.create({
+      product: 'shoe'
     })
   ])
 
@@ -37,6 +58,7 @@ async function seed() {
       name: 'Power Suit',
       price: 500.0,
       category: 'suit',
+      productkeyId: productKey[1].id,
       stock: 56,
       description: 'A suit that gives you power'
     }),
@@ -44,6 +66,7 @@ async function seed() {
       name: 'Power Watch',
       price: 1500.0,
       category: 'watch',
+      productkeyId: productKey[0].id,
       stock: 10,
       description: 'A watch that gives you power'
     }),
@@ -51,8 +74,33 @@ async function seed() {
       name: 'Flexing Shoe',
       price: 250.0,
       category: 'shoe',
+      productkeyId: productKey[2].id,
       stock: 15,
       description: 'A shoe that looks cool'
+    }),
+    Product.create({
+      name: 'Camo Suit',
+      price: 500.0,
+      category: 'suit',
+      productkeyId: productKey[1].id,
+      stock: 56,
+      description: 'A suit that gives you shapeshifting powers'
+    }),
+    Product.create({
+      name: 'Flashy Watch',
+      price: 200.0,
+      category: 'watch',
+      productkeyId: productKey[0].id,
+      stock: 50,
+      description: 'A watch that glows bright'
+    }),
+    Product.create({
+      name: 'Fire Shoe',
+      price: 150.0,
+      category: 'shoe',
+      productkeyId: productKey[2].id,
+      stock: 20,
+      description: 'A shoe that is fireproof and also fire'
     })
   ])
 

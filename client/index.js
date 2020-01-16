@@ -8,6 +8,7 @@ import App from './app'
 import AllProducts from './components/allproducts'
 import userHome from './components/user-home'
 import SingleProduct from './components/SingleProduct'
+import SingleCategory from './components/SingleCategory'
 
 // establishes socket connection
 import './socket'
@@ -18,6 +19,7 @@ ReactDOM.render(
       <Route exact path="/" component={App} />
       <Route exact path="/home" component={userHome} />
       <Route exact path="/products" component={AllProducts} />
+      <Route exact path="/products/:category" component={SingleCategory} />
       <Route
         exact
         path="/products/:category/:productId"
