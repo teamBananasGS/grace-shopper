@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import Navbar from './navbar'
 import {connect} from 'react-redux'
 import {loadUserCart} from '../store/actioncreators'
+import {Link} from '../store'
 
 class Cart extends Component {
   componentDidMount() {
@@ -21,15 +22,19 @@ class Cart extends Component {
             return (
               <div className="product" key={product.id}>
                 <ul>
-                  <p>
+                  <p className="cartImage">
                     {' '}
-                    <img src={product.imageUrl} />
+                    <img src={product.imageUrl} />{' '}
                   </p>
-                  <h3> {product.name} </h3>
-                  <h3> {`Size: insert product size`} </h3>
-                  <h3> {`Quantity: insert product quantity`} </h3>
-                  <h3> {`$${product.price}`} </h3>
-                  <button type="button">Remove</button>
+                  <p className="centercart">
+                    <h3> {product.name} </h3>
+                    <h3> {`Size: insert product size`} </h3>
+                    <h3> {`Quantity: insert product quantity`} </h3>
+                    <h3> {`$${product.price}`} </h3>
+                    <button type="button" className="removeButton">
+                      Remove
+                    </button>
+                  </p>
                 </ul>
               </div>
             )
