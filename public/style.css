@@ -98,3 +98,16 @@ img {
   margin-left: -50px;
   padding-right: 4%;
 }
+ul {
+  display: table;
+  margin: 0 auto;
+}
+.cartImage {
+  height: 300px;
+  width: 600px;
+}
+
+.centerCart {
+  justify-content: center;
+  text-align: center;
+}

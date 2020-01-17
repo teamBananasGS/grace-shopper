@@ -1,14 +1,17 @@
 import React from 'react'
-
 import {Navbar} from './components'
 import Routes from './routes'
 import {connect} from 'react-redux'
 import {loadUserCart} from './store/actioncreators'
+import Axios from 'axios'
 
 class App extends React.Component {
-  componentDidMount() {
+  async componentDidMount() {
+    //on login, check if the user exists in database
+    //check to see if there is an existing 'pending' order for that user
+    //load the cart related to that orderId
     if (this.props.user.id) {
-      this.props.onLoadUserCart(this.props.user.id)
+      await Axios.get(`api/users/checkorder/${this.props.user.id}`)
     }
   }
 
