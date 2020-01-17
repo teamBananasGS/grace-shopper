@@ -15,12 +15,12 @@ class SingleProduct extends React.Component {
   }
 
   async handleAddToCart(productId) {
-    const productUpdate = this.props.userCart[0].products.filter(
-      obj => obj.id === productId
-    )
-    const orderId = this.props.userCart[0].products[0].orderProduct.orderId
+    const cart = this.props.userCart
+    const productUpdate = cart[0].products.filter(obj => obj.id === productId)
+    const orderId = cart[0].id
 
     try {
+      // if current product exist in the cart, increment the quantity by one
       if (productUpdate[0] !== undefined) {
         const newQuantity = ++productUpdate[0].orderProduct.quantityPurchased
         console.log(newQuantity)
@@ -28,6 +28,7 @@ class SingleProduct extends React.Component {
           quantityPurchased: newQuantity
         })
       } else {
+        // else we create the product
         await Axios.post(`/api/cart/update/${productId}`, {
           productId: productId,
           quantityPurchased: 1,
