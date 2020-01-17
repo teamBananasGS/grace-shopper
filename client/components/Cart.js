@@ -28,9 +28,20 @@ class Cart extends Component {
                   </p>
                   <div className="centercart">
                     <p> {product.name} </p>
-                    <p> {`Size: insert product size`} </p>
-                    <p> {`Quantity: insert product quantity`} </p>
-                    <p> {`$${product.price}`} </p>
+                    <p>
+                      {' '}
+                      {`Quantity: ${
+                        product.orderProduct.quantityPurchased
+                      }`}{' '}
+                    </p>
+                    <p>
+                      {' '}
+                      {`Item Price: $${product.orderProduct.pricePerItem}`}{' '}
+                    </p>
+                    <p>
+                      {' '}
+                      {`Item Subtotal: $${product.orderProduct.subtotal}`}{' '}
+                    </p>
                     <button type="button" className="removeButton">
                       Remove
                     </button>
