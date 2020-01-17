@@ -26,15 +26,15 @@ class Cart extends Component {
                     {' '}
                     <img src={product.imageUrl} />{' '}
                   </p>
-                  <p className="centercart">
-                    <h3> {product.name} </h3>
-                    <h3> {`Size: insert product size`} </h3>
-                    <h3> {`Quantity: insert product quantity`} </h3>
-                    <h3> {`$${product.price}`} </h3>
+                  <div className="centercart">
+                    <p> {product.name} </p>
+                    <p> {`Size: insert product size`} </p>
+                    <p> {`Quantity: insert product quantity`} </p>
+                    <p> {`$${product.price}`} </p>
                     <button type="button" className="removeButton">
                       Remove
                     </button>
-                  </p>
+                  </div>
                 </ul>
               </div>
             )

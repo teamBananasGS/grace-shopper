@@ -31,7 +31,7 @@ ReactDOM.render(
         path="/products/:category/:productId"
         component={SingleProduct}
       />
-      <Route exact path="/cart/:userId" component={Cart} />
+      <Route exact path="/cart" component={Cart} />
     </Router>
   </Provider>,
   document.getElementById('app')
