@@ -1,15 +1,47 @@
 import React from 'react'
 import Navbar from './navbar'
 import {connect} from 'react-redux'
-import {loadSingleProduct} from '../store/actioncreators'
+import {loadSingleProduct, loadUserCart} from '../store/actioncreators'
+import Axios from 'axios'
 
 class SingleProduct extends React.Component {
+  constructor() {
+    super()
+    this.handleAddToCart = this.handleAddToCart.bind(this)
+  }
+
   componentDidMount() {
     this.props.onLoadSingleProduct()
   }
 
+  async handleAddToCart(productId) {
+    const productUpdate = this.props.userCart[0].products.filter(
+      obj => obj.id === productId
+    )
+    const orderId = this.props.userCart[0].products[0].orderProduct.orderId
+
+    try {
+      if (productUpdate[0] !== undefined) {
+        const newQuantity = ++productUpdate[0].orderProduct.quantityPurchased
+        console.log(newQuantity)
+        await Axios.put(`/api/cart/update/${productId}`, {
+          quantityPurchased: newQuantity
+        })
+      } else {
+        await Axios.post(`/api/cart/update/${productId}`, {
+          productId: productId,
+          quantityPurchased: 1,
+          pricePerItem: this.props.selectedProduct.price,
+          orderId: orderId
+        })
+        this.props.onLoadUserCart(this.props.user.id)
+      }
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
   render() {
-    console.log(this.props)
     const selectedProduct = this.props.selectedProduct
     return selectedProduct ? (
       <div>
@@ -22,7 +54,11 @@ class SingleProduct extends React.Component {
             <p>{selectedProduct.description}</p>
             <p>{`Price: $${selectedProduct.price} USD`}</p>
             <div>
-              <button type="submit" className="addtocartButton">
+              <button
+                type="submit"
+                className="addtocartButton"
+                onClick={() => this.handleAddToCart(selectedProduct.id)}
+              >
                 Add To Cart
               </button>
             </div>
@@ -49,6 +85,10 @@ const mapDispatchToProps = (dispatch, ownProps) => {
       const productId = ownProps.match.params.productId
       const category = ownProps.match.params.category
       const thunk = loadSingleProduct(productId, category)
+      dispatch(thunk)
+    },
+    onLoadUserCart: function(userId) {
+      const thunk = loadUserCart(userId)
       dispatch(thunk)
     }
   }

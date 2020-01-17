@@ -1,6 +1,6 @@
 import axios from 'axios'
 import history from '../history'
-import {loadUserCart} from './actioncreators'
+import {loadUserCart, removeUserCart} from './actioncreators'
 
 /**
  * ACTION TYPES
@@ -52,6 +52,7 @@ export const logout = () => async dispatch => {
   try {
     await axios.post('/auth/logout')
     dispatch(removeUser())
+    dispatch(removeUserCart())
     history.push('/')
   } catch (err) {
     console.error(err)

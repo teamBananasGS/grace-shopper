@@ -4,6 +4,7 @@ export const GET_ALL_PRODUCTS = 'GET_ALL_PRODUCTS'
 export const GET_SINGLE_PRODUCT = 'GET_SINGLE_PRODUCT'
 export const GET_SINGLE_CATEGORY = 'GET_SINGLE_CATEGORY'
 export const GET_USER_CART = 'GET_USER_CART'
+export const REMOVE_USER_CART = 'REMOVE_USER_CART'
 
 export const getSingleProduct = productId => {
   return {
@@ -30,6 +31,13 @@ export const getUserCart = cart => {
   return {
     type: GET_USER_CART,
     userCart: cart
+  }
+}
+
+export const removeUserCart = () => {
+  return {
+    type: REMOVE_USER_CART,
+    userCart: []
   }
 }
 
