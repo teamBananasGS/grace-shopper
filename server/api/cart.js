@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const {Order, Product} = require('../db/models')
+const {Order, Product, OrderProduct} = require('../db/models')
 
 module.exports = router
 
@@ -15,6 +15,30 @@ router.get('/:userId', async (req, res, next) => {
       include: [{model: Product}]
     })
     res.json(cartProducts)
+  } catch (err) {
+    next(err)
+  }
+})
+
+router.put('/update/:productId', async (req, res, next) => {
+  try {
+    const productId = req.params.productId
+    const data = await OrderProduct.update(req.body, {
+      where: {
+        productId: productId
+      }
+    })
+    console.log(data)
+    res.sendStatus(204)
+  } catch (err) {
+    next(err)
+  }
+})
+
+router.post('/update/:productId', async (req, res, next) => {
+  try {
+    await OrderProduct.create(req.body)
+    res.sendStatus(204)
   } catch (err) {
     next(err)
   }
