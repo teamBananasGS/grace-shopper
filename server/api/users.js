@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const {User} = require('../db/models')
+const {User, Order} = require('../db/models')
 module.exports = router
 
 router.get('/', async (req, res, next) => {
@@ -11,6 +11,21 @@ router.get('/', async (req, res, next) => {
       // attributes: ['id', 'email']
     })
     res.json(users)
+  } catch (err) {
+    next(err)
+  }
+})
+
+router.get('/checkorder/:userId', async (req, res, next) => {
+  try {
+    const userId = req.params.userId
+    await Order.findOrCreate({
+      where: {
+        userId,
+        status: 'pending'
+      }
+    })
+    res.sendStatus(204)
   } catch (err) {
     next(err)
   }
