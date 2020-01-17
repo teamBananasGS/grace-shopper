@@ -30,7 +30,7 @@ const Product = db.define('product', {
     type: Sequelize.INTEGER,
     allowNull: false,
     validate: {
-      notEmpty: true
+      min: 0
     }
   },
   description: {

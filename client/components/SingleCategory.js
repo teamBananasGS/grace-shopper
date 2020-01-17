@@ -10,7 +10,7 @@ class SingleCategory extends Component {
   }
 
   render() {
-    const selectedCategory = this.props.selectedCategory
+    const {selectedCategory} = this.props
     return selectedCategory ? (
       <div>
         <Navbar />
