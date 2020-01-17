@@ -12,7 +12,6 @@ class App extends React.Component {
     //load the cart related to that orderId
     if (this.props.user.id) {
       await Axios.get(`api/users/checkorder/${this.props.user.id}`)
-      this.props.onLoadUserCart(this.props.user.id)
     }
   }
 
