@@ -9,6 +9,7 @@ import AllProducts from './components/allproducts'
 import userHome from './components/user-home'
 import SingleProduct from './components/SingleProduct'
 import SingleCategory from './components/SingleCategory'
+import Cart from './components/Cart'
 
 // establishes socket connection
 import './socket'
@@ -30,6 +31,7 @@ ReactDOM.render(
         path="/products/:category/:productId"
         component={SingleProduct}
       />
+      <Route exact path="/cart/:userId" component={Cart} />
     </Router>
   </Provider>,
   document.getElementById('app')
