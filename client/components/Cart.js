@@ -2,7 +2,6 @@ import React, {Component} from 'react'
 import Navbar from './navbar'
 import {connect} from 'react-redux'
 import {loadUserCart} from '../store/actioncreators'
-import {Link} from '../store'
 import Axios from 'axios'
 import QuantityButton from './QuantityButton'
 
@@ -11,12 +10,21 @@ class Cart extends Component {
     super()
     this.handleRemoveItem = this.handleRemoveItem.bind(this)
     this.handleUpdateItem = this.handleUpdateItem.bind(this)
+    this.getTotalPrice = this.getTotalPrice.bind(this)
   }
 
   componentDidMount() {
     if (this.props.user.id) {
       this.props.onLoadUserCart(this.props.user.id)
     }
+  }
+
+  getTotalPrice() {
+    const products = this.props.userCart[0].products
+    const total = products.reduce((acc, product) => {
+      return acc + product.orderProduct.subtotal
+    }, 0)
+    return total
   }
 
   async handleUpdateItem(productId, quantity) {
@@ -84,7 +92,7 @@ class Cart extends Component {
           })}
         </div>
         <div>
-          <p>Total Price: {``}</p>
+          <p>{`Total Price: $${this.getTotalPrice()}`}</p>
         </div>
       </div>
     ) : (
