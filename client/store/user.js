@@ -26,7 +26,7 @@ export const me = () => async dispatch => {
   try {
     const res = await axios.get('/auth/me')
     dispatch(getUser(res.data || defaultUser))
-    dispatch(loadUserCart(res.data.id))
+    if (res.data.id !== undefined) dispatch(loadUserCart(res.data.id))
   } catch (err) {
     console.error(err)
   }
@@ -42,6 +42,7 @@ export const auth = (email, password, method) => async dispatch => {
 
   try {
     dispatch(getUser(res.data))
+    dispatch(loadUserCart(res.data.id))
     history.push('/')
   } catch (dispatchOrHistoryErr) {
     console.error(dispatchOrHistoryErr)
