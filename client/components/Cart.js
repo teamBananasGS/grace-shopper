@@ -12,8 +12,13 @@ class Cart extends Component {
   }
 
   render() {
-    const userCart = this.props.userCart[0].products
-    return (
+    let userCart
+
+    if (this.props.userCart.length) {
+      userCart = this.props.userCart[0].products
+    }
+
+    return userCart ? (
       <div>
         <Navbar />
         <h1 className="Quote"> Shopping cart</h1>
@@ -28,9 +33,20 @@ class Cart extends Component {
                   </p>
                   <div className="centercart">
                     <p> {product.name} </p>
-                    <p> {`Size: insert product size`} </p>
-                    <p> {`Quantity: insert product quantity`} </p>
-                    <p> {`$${product.price}`} </p>
+                    <p>
+                      {' '}
+                      {`Quantity: ${
+                        product.orderProduct.quantityPurchased
+                      }`}{' '}
+                    </p>
+                    <p>
+                      {' '}
+                      {`Item Price: $${product.orderProduct.pricePerItem}`}{' '}
+                    </p>
+                    <p>
+                      {' '}
+                      {`Item Subtotal: $${product.orderProduct.subtotal}`}{' '}
+                    </p>
                     <button type="button" className="removeButton">
                       Remove
                     </button>
@@ -40,6 +56,12 @@ class Cart extends Component {
             )
           })}
         </div>
+      </div>
+    ) : (
+      <div>
+        <Navbar />
+        <h1 className="Quote"> Shopping cart</h1>
+        <h3>Your Shopping Cart is empty</h3>
       </div>
     )
   }
