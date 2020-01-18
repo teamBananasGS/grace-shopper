@@ -9,6 +9,12 @@ class SingleCategory extends Component {
     this.props.onLoadSingleCategory()
   }
 
+  componentDidUpdate(prevProps) {
+    if (prevProps.category !== this.props.category) {
+      this.props.onLoadSingleCategory()
+    }
+  }
+
   render() {
     const {selectedCategory} = this.props
     return selectedCategory ? (
@@ -35,9 +41,10 @@ class SingleCategory extends Component {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state, ownProps) => {
   return {
-    selectedCategory: state.selectedCategory
+    selectedCategory: state.selectedCategory,
+    category: ownProps.match.params.category
   }
 }
 
