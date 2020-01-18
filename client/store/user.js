@@ -22,15 +22,16 @@ const removeUser = () => ({type: REMOVE_USER})
 /**
  * THUNK CREATORS
  */
-// export const me = () => async dispatch => {
-//   try {
-//     const res = await axios.get('/auth/me')
-//     dispatch(getUser(res.data || defaultUser))
-//     // dispatch(loadUserCart(res.data.id))
-//   } catch (err) {
-//     console.error(err)
-//   }
-// }
+
+export const me = () => async dispatch => {
+  try {
+    const res = await axios.get('/auth/me')
+    dispatch(getUser(res.data || defaultUser))
+    if (res.data.id !== undefined) dispatch(loadUserCart(res.data.id))
+  } catch (err) {
+    console.error(err)
+  }
+}
 
 // method = login
 export const auth = (email, password, method) => async dispatch => {
@@ -43,13 +44,14 @@ export const auth = (email, password, method) => async dispatch => {
   } catch (authError) {
     return dispatch(getUser({error: authError}))
   }
-
-  // try {
-  //   dispatch(getUser(res.data.id))
-  //   history.push('/')
-  // } catch (dispatchOrHistoryErr) {
-  //   console.error(dispatchOrHistoryErr)
-  // }
+  
+  try {
+    dispatch(getUser(res.data))
+    dispatch(loadUserCart(res.data.id))
+    history.push('/')
+  } catch (dispatchOrHistoryErr) {
+    console.error(dispatchOrHistoryErr)
+  }
 }
 
 export const logout = () => async dispatch => {
