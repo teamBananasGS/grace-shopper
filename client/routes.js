@@ -9,9 +9,9 @@ import {me} from './store'
  * COMPONENT
  */
 class Routes extends Component {
-  // componentDidMount() {
-  //   this.props.loadInitialData()
-  // }
+  componentDidMount() {
+    this.props.loadInitialData()
+  }
 
   render() {
     const {isLoggedIn} = this.props
@@ -24,13 +24,13 @@ class Routes extends Component {
         <Route path="/signup" component={Signup} />
 
         {/* Routes placed here are only available after logging in */}
-        {/* isLoggedIn && (
+        {isLoggedIn && (
           <Switch>
             <Route path="/home" component={UserHome} />
           </Switch>
-        ) */}
+        )}
         {/* Displays our Login component as a fallback */}
-        {/* <Route component={Login} /> */}
+        <Route component={Login} />
       </Switch>
     )
   }
@@ -47,22 +47,22 @@ const mapState = state => {
   }
 }
 
-// const mapDispatch = dispatch => {
-//   return {
-//     loadInitialData() {
-//       dispatch(me())
-//     }
-//   }
-// }
+const mapDispatch = dispatch => {
+  return {
+    loadInitialData() {
+      dispatch(me())
+    }
+  }
+}
 
 // The `withRouter` wrapper makes sure that updates are not blocked
 // when the url changes
-export default withRouter(connect(mapState)(Routes))
+export default withRouter(connect(mapState, mapDispatch)(Routes))
 
 /**
  * PROP TYPES
  */
 Routes.propTypes = {
-  // loadInitialData: PropTypes.func.isRequired,
+  loadInitialData: PropTypes.func.isRequired,
   isLoggedIn: PropTypes.bool.isRequired
 }
