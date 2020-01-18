@@ -20,15 +20,18 @@ class SingleProduct extends React.Component {
     const orderId = cart[0].id
 
     try {
-      // if current product exist in the cart, increment the quantity by one
+      // if product exists in current cart, increment the quantity by one
       if (productUpdate[0] !== undefined) {
         const newQuantity = ++productUpdate[0].orderProduct.quantityPurchased
         console.log(newQuantity)
         await Axios.put(`/api/cart/update/${productId}`, {
-          quantityPurchased: newQuantity
+          data: {
+            quantity: newQuantity,
+            orderId
+          }
         })
       } else {
-        // else we create the product
+        // if product does not exist in current cart, we create a record in OrderProduct
         await Axios.post(`/api/cart/update/${productId}`, {
           productId: productId,
           quantityPurchased: 1,

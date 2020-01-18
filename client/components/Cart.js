@@ -3,18 +3,41 @@ import Navbar from './navbar'
 import {connect} from 'react-redux'
 import {loadUserCart} from '../store/actioncreators'
 import {Link} from '../store'
+import Axios from 'axios'
+import QuantityButton from './QuantityButton'
 
 class Cart extends Component {
+  constructor() {
+    super()
+    this.handleRemoveItem = this.handleRemoveItem.bind(this)
+    this.handleUpdateItem = this.handleUpdateItem.bind(this)
+  }
+
   componentDidMount() {
     if (this.props.user.id) {
       this.props.onLoadUserCart(this.props.user.id)
     }
   }
 
+  async handleUpdateItem(productId, quantity) {
+    const orderId = this.props.userCart[0].id
+    await Axios.put(`/api/cart/update/${productId}`, {
+      data: {quantity, orderId}
+    })
+    this.props.onLoadUserCart(this.props.user.id)
+  }
+
+  async handleRemoveItem(productId) {
+    await Axios.delete(
+      `/api/cart/delete/${productId}/${this.props.userCart[0].id}`
+    )
+    this.props.onLoadUserCart(this.props.user.id)
+  }
+
   render() {
     let userCart
 
-    if (this.props.userCart.length) {
+    if (this.props.userCart.length && this.props.userCart[0].products.length) {
       userCart = this.props.userCart[0].products
     }
 
@@ -33,12 +56,12 @@ class Cart extends Component {
                   </p>
                   <div className="centercart">
                     <p> {product.name} </p>
-                    <p>
-                      {' '}
-                      {`Quantity: ${
-                        product.orderProduct.quantityPurchased
-                      }`}{' '}
-                    </p>
+                    <p>Quantity: </p>{' '}
+                    <QuantityButton
+                      quantity={product.orderProduct.quantityPurchased}
+                      productId={product.id}
+                      handleUpdateItem={this.handleUpdateItem}
+                    />
                     <p>
                       {' '}
                       {`Item Price: $${product.orderProduct.pricePerItem}`}{' '}
@@ -47,7 +70,11 @@ class Cart extends Component {
                       {' '}
                       {`Item Subtotal: $${product.orderProduct.subtotal}`}{' '}
                     </p>
-                    <button type="button" className="removeButton">
+                    <button
+                      type="button"
+                      className="removeButton"
+                      onClick={() => this.handleRemoveItem(product.id)}
+                    >
                       Remove
                     </button>
                   </div>
@@ -55,6 +82,9 @@ class Cart extends Component {
               </div>
             )
           })}
+        </div>
+        <div>
+          <p>Total Price: {``}</p>
         </div>
       </div>
     ) : (

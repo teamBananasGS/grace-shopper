@@ -76,7 +76,7 @@ class App extends React.Component {
         {user.id ? (
           <p>{`Welcome, ${user.firstName} ${user.lastName}!`}</p>
         ) : (
-          <Login />
+          <div />
         )}
         <div className="homeImages">
           <h3 className="Quote">Be Your Own Hero</h3>
