@@ -21,14 +21,18 @@ router.get('/:userId', async (req, res, next) => {
 })
 
 router.put('/update/:productId', async (req, res, next) => {
+  let quantity = req.body.data.quantity
+  console.log(req.body.data)
   try {
     const productId = req.params.productId
-    const data = await OrderProduct.update(req.body, {
-      where: {
-        productId: productId
+    await OrderProduct.update(
+      {quantityPurchased: quantity},
+      {
+        where: {
+          productId: productId
+        }
       }
-    })
-    console.log(data)
+    )
     res.sendStatus(204)
   } catch (err) {
     next(err)
@@ -38,6 +42,20 @@ router.put('/update/:productId', async (req, res, next) => {
 router.post('/update/:productId', async (req, res, next) => {
   try {
     await OrderProduct.create(req.body)
+    res.sendStatus(204)
+  } catch (err) {
+    next(err)
+  }
+})
+
+router.delete('/delete/:productId/:orderId', async (req, res, next) => {
+  try {
+    await OrderProduct.destroy({
+      where: {
+        productId: req.params.productId,
+        orderId: req.params.orderId
+      }
+    })
     res.sendStatus(204)
   } catch (err) {
     next(err)
