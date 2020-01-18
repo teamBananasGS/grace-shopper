@@ -3,7 +3,9 @@ import Navbar from './navbar'
 import {connect} from 'react-redux'
 import {loadUserCart} from '../store/actioncreators'
 import Axios from 'axios'
+import {Link} from 'react-router-dom'
 import QuantityButton from './QuantityButton'
+import {me} from '../store'
 
 class Cart extends Component {
   constructor() {
@@ -14,6 +16,7 @@ class Cart extends Component {
   }
 
   componentDidMount() {
+    this.props.loadInitialData()
     if (this.props.user.id) {
       this.props.onLoadUserCart(this.props.user.id)
     }
@@ -94,6 +97,11 @@ class Cart extends Component {
         <div>
           <p>{`Total Price: $${this.getTotalPrice()}`}</p>
         </div>
+        <div>
+          <Link to="/">
+            <button type="button">Checkout</button>
+          </Link>
+        </div>
       </div>
     ) : (
       <div>
@@ -114,6 +122,9 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
+    loadInitialData() {
+      dispatch(me())
+    },
     onLoadUserCart: function(userId) {
       const thunk = loadUserCart(userId)
       dispatch(thunk)
