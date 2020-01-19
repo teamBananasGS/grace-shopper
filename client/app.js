@@ -21,7 +21,7 @@ class App extends React.Component {
     return (
       <div>
         <Navbar />
-        <Routes />
+        {/* <Routes /> */}
         {user.id ? (
           <h4 className="welcome">{`Welcome, ${user.firstName} ${
             user.lastName

@@ -13,6 +13,7 @@ import Cart from './components/Cart'
 
 // establishes socket connection
 import './socket'
+import {Login} from './components'
 
 ReactDOM.render(
   <Provider store={store}>
@@ -20,6 +21,7 @@ ReactDOM.render(
       <Route exact path="/" component={App} user={store.user} />
       <Route exact path="/home" component={userHome} user={store.user} />
       <Route exact path="/products" component={AllProducts} user={store.user} />
+      <Route exact path="/login" component={Login} />
       <Route
         exact
         path="/products/:category"
