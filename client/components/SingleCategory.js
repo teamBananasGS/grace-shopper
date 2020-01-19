@@ -20,16 +20,19 @@ class SingleCategory extends Component {
     return selectedCategory ? (
       <div>
         <Navbar />
+        <h3 className="allProductsTitle">All Products</h3>
+        <hr />
         {selectedCategory.map(product => {
           return (
             <div className="product" key={product.id}>
-              <ul>
+              <ul id="productList">
                 <p>
                   <Link to={`/products/${product.category}/${product.id}`}>
-                    {product.name}
+                    <img id="productImage" src={product.imageUrl} />
+                    <br />
+                    <p className="centerProductname">{product.name}</p>
                   </Link>
                 </p>
-                <img src={product.imageUrl} />
               </ul>
             </div>
           )

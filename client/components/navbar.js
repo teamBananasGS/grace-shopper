@@ -9,12 +9,13 @@ import {removeUserCart} from '../store/actioncreators'
 
 const Navbar = ({handleClick, isLoggedIn}) => (
   <div>
-    <h1 id="powerSuitsTitle">Power Suits</h1>
     <nav>
       {isLoggedIn ? (
         <div>
           {/* The navbar will show these links after you log in */}
-          <Link to="/">Home</Link>
+          <Link id="powerSuitsTitle" to="/">
+            PowerSuits
+          </Link>
           <Link to="/products/suit">Suits</Link>
           <Link to="/products/watch">Watches</Link>
           <Link to="/products/shoe">Shoes</Link>
@@ -22,17 +23,43 @@ const Navbar = ({handleClick, isLoggedIn}) => (
             Logout
           </a>
           <Link to="/cart">Cart</Link>
+          <a href="/social" className="fa fa-google">
+            {' '}
+          </a>
+          <a href="/social" className="fa fa-facebook">
+            {' '}
+          </a>
+          <a href="/social" className="fa fa-instagram">
+            {' '}
+          </a>
+          <a href="/social" className="fa fa-twitter">
+            {' '}
+          </a>
         </div>
       ) : (
         <div>
           {/* The navbar will show these links before you log in */}
-          <Link to="/">Home</Link>
+          <Link id="powerSuitsTitle" to="/">
+            PowerSuits
+          </Link>
           <Link to="/products/suit">Suits</Link>
           <Link to="/products/watch">Watches</Link>
           <Link to="/products/shoe">Shoes</Link>
           <Link to="/login">Login</Link>
           <Link to="/signup">Sign Up</Link>
           <Link to="/cart">Cart</Link>
+          <a href="/social" className="fa fa-google">
+            {' '}
+          </a>
+          <a href="/social" className="fa fa-facebook">
+            {' '}
+          </a>
+          <a href="/social" className="fa fa-instagram">
+            {' '}
+          </a>
+          <a href="/social" className="fa fa-twitter">
+            {' '}
+          </a>
         </div>
       )}
     </nav>
