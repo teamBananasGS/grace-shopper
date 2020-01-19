@@ -92,7 +92,7 @@ class Cart extends Component {
           <p>{`Total Price: $${this.getTotalPrice()}`}</p>
         </div>
         <div>
-          <Link to="/">
+          <Link to="/checkout">
             <button type="button">Checkout</button>
           </Link>
         </div>

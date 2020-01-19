@@ -10,10 +10,11 @@ import userHome from './components/user-home'
 import SingleProduct from './components/SingleProduct'
 import SingleCategory from './components/SingleCategory'
 import Cart from './components/Cart'
+import Checkout from './components/Checkout'
+import {Login} from './components'
 
 // establishes socket connection
 import './socket'
-import {Login} from './components'
 
 ReactDOM.render(
   <Provider store={store}>
@@ -34,6 +35,8 @@ ReactDOM.render(
         component={SingleProduct}
       />
       <Route exact path="/cart" component={Cart} />
+      <Route exact path="/checkout" component={Checkout} />
+      <Route exact path="/checkout/complete" />
     </Router>
   </Provider>,
   document.getElementById('app')
