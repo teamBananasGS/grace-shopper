@@ -13,6 +13,7 @@ import Cart from './components/Cart'
 
 // establishes socket connection
 import './socket'
+import Checkout from './components/Checkout'
 
 ReactDOM.render(
   <Provider store={store}>
@@ -32,6 +33,8 @@ ReactDOM.render(
         component={SingleProduct}
       />
       <Route exact path="/cart" component={Cart} />
+      <Route exact path="/checkout" component={Checkout} />
+      <Route exact path="/checkout/complete" />
     </Router>
   </Provider>,
   document.getElementById('app')

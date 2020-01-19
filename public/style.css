@@ -9,6 +9,14 @@ a {
   text-decoration: none;
 }
 
+ul {
+  list-style-type: none;
+}
+
+.shippingrow > ul {
+  text-align: start;
+}
+
 label {
   display: block;
 }
@@ -100,8 +108,28 @@ img {
 }
 ul {
   display: table;
-  margin: 0 auto;
+  /* margin: 0 auto; */
 }
+
+h4 {
+  margin-bottom: 5px;
+}
+
+ul span {
+  margin: 12px;
+}
+
+hr {
+  background-color: transparent;
+  display: block;
+  height: 1px;
+  border-width: 0;
+  border-top: 1px solid #e7e7e7;
+  line-height: 19px;
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+
 .cartImage {
   height: 300px;
   width: 600px;

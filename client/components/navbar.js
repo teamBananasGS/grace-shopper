@@ -53,6 +53,7 @@ const mapDispatch = dispatch => {
   return {
     handleClick() {
       dispatch(logout())
+      dispatch(removeUserCart())
     }
   }
 }
