@@ -51,9 +51,9 @@ class SingleProduct extends React.Component {
       <div>
         <Navbar />
         <div id="selectedProductContainer">
-          <img src={selectedProduct.imageUrl} />
-          <div>
-            <h1>{selectedProduct.name}</h1>
+          <img id="selectedProductImage" src={selectedProduct.imageUrl} />
+          <div id="selectedProductBio">
+            <h3 id="singleProductTitle">{selectedProduct.name}</h3>
             <span>Description</span>
             <p>{selectedProduct.description}</p>
             <p>{`Price: $${selectedProduct.price} USD`}</p>

@@ -55,7 +55,7 @@ class Cart extends Component {
     return userCart ? (
       <div>
         <Navbar />
-        <h1 className="Quote"> Shopping cart</h1>
+        <h3 className="allProductsTitle"> Shopping Cart</h3> <hr />
         <div className="some-page-wrapper">
           {userCart.map(product => {
             return (
@@ -63,7 +63,7 @@ class Cart extends Component {
                 <ul>
                   <p className="cartImage">
                     {' '}
-                    <img src={product.imageUrl} />{' '}
+                    <img id="productImageInCart" src={product.imageUrl} />{' '}
                   </p>
                   <div className="centercart">
                     <p> {product.name} </p>
@@ -73,14 +73,8 @@ class Cart extends Component {
                       productId={product.id}
                       handleUpdateItem={this.handleUpdateItem}
                     />
-                    <p>
-                      {' '}
-                      {`Item Price: $${product.orderProduct.pricePerItem}`}{' '}
-                    </p>
-                    <p>
-                      {' '}
-                      {`Item Subtotal: $${product.orderProduct.subtotal}`}{' '}
-                    </p>
+                    <p> {`Price: $${product.orderProduct.pricePerItem}`} </p>
+                    <p> {`Subtotal: $${product.orderProduct.subtotal}`} </p>
                     <button
                       type="button"
                       className="removeButton"
@@ -106,8 +100,10 @@ class Cart extends Component {
     ) : (
       <div>
         <Navbar />
-        <h1 className="Quote"> Shopping cart</h1>
-        <h3>Your Shopping Cart is empty</h3>
+        <h2 className="allProductsTitle">Your Shopping Cart Is Empty</h2>
+        <div>
+          <img className="emptyCart" src="http://tny.im/ky1" />
+        </div>
       </div>
     )
   }
