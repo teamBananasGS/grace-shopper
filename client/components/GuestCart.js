@@ -42,7 +42,7 @@ class GuestCart extends Component {
 
   render() {
     let guestCart = JSON.parse(localStorage.getItem('cart'))
-    console.log(this.state.guestCart)
+    console.log(guestCart)
 
     return guestCart.length ? (
       <div>
@@ -85,7 +85,7 @@ class GuestCart extends Component {
           <p>{`Total Price: $${this.getTotalPrice(guestCart)}`}</p>
         </div>
         <div>
-          <Link to="/checkout">
+          <Link to="/checkout/guest">
             <button type="button">Checkout</button>
           </Link>
         </div>
