@@ -51,6 +51,7 @@ class Checkout extends Component {
 
   render() {
     const user = this.props.user
+    const orderId = this.props.userCart[0].id
     return user.id ? (
       <div>
         <Navbar />
@@ -95,7 +96,11 @@ class Checkout extends Component {
             </div>
           </div>
           <div>
-            <Link to="/checkout/complete">
+            <Link
+              to={`/checkout/complete/${user.firstName}/${
+                user.lastName
+              }/${orderId}`}
+            >
               <button type="submit" onClick={this.submitOrder}>
                 Place Order
               </button>

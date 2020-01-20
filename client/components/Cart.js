@@ -71,6 +71,7 @@ class Cart extends Component {
                     <QuantityButton
                       quantity={product.orderProduct.quantityPurchased}
                       productId={product.id}
+                      stock={product.stock}
                       handleUpdateItem={this.handleUpdateItem}
                     />
                     <p> {`Price: $${product.orderProduct.pricePerItem}`} </p>
