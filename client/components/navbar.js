@@ -7,7 +7,7 @@ import {removeUserCart} from '../store/actioncreators'
 
 // import AllProducts from './allproducts'
 
-const Navbar = ({handleClick, isLoggedIn}) => (
+const Navbar = ({handleClick, isLoggedIn, isAdmin}) => (
   <div>
     <nav>
       {isLoggedIn ? (
@@ -23,6 +23,7 @@ const Navbar = ({handleClick, isLoggedIn}) => (
             Logout
           </a>
           <Link to="/cart">Cart</Link>
+          {isAdmin ? <Link to="/admin">Admin</Link> : null}
           <a href="/social" className="fa fa-google">
             {' '}
           </a>
@@ -72,7 +73,8 @@ const Navbar = ({handleClick, isLoggedIn}) => (
  */
 const mapState = state => {
   return {
-    isLoggedIn: !!state.user.id
+    isLoggedIn: !!state.user.id,
+    isAdmin: state.user.isAdmin
   }
 }
 
