@@ -79,7 +79,7 @@ class SingleProduct extends React.Component {
     }
 
     const parsed = JSON.parse(localStorage.getItem('cart'))
-    console.log('updated cart', parsed)
+    console.log('Updated cart details', parsed)
   }
 
   render() {

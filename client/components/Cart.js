@@ -6,6 +6,7 @@ import Axios from 'axios'
 import {Link} from 'react-router-dom'
 import QuantityButton from './QuantityButton'
 import {me} from '../store'
+import GuestCart from './GuestCart'
 
 class Cart extends Component {
   constructor() {
@@ -98,6 +99,8 @@ class Cart extends Component {
           </Link>
         </div>
       </div>
+    ) : localStorage.getItem('cart') ? (
+      <GuestCart />
     ) : (
       <div>
         <Navbar />

@@ -27,7 +27,6 @@ class QuantityButton extends Component {
   }
 
   render() {
-    console.log(this.props.stock)
     return (
       <div>
         <div className="quantity-input">
