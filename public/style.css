@@ -16,6 +16,12 @@ ul {
 .shippingrow > ul {
   text-align: start;
 }
+.centerDiv {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  text-align: center;
+}
 
 label {
   display: block;
