@@ -8,6 +8,7 @@ class SingleProduct extends React.Component {
   constructor() {
     super()
     this.handleAddToCart = this.handleAddToCart.bind(this)
+    this.guestAddToCart = this.guestAddToCart.bind(this)
   }
 
   componentDidMount() {
@@ -45,6 +46,42 @@ class SingleProduct extends React.Component {
     }
   }
 
+  guestAddToCart(addedProduct) {
+    let cartProducts = []
+    let foundItem = false
+
+    //check if the cart is already initialized and not empty
+    if (localStorage.getItem('cart')) {
+      cartProducts = JSON.parse(localStorage.getItem('cart'))
+      // check if the product already exists in the cart
+      for (let product of cartProducts) {
+        // if product found, add quantity by 1, reset local storage
+        if (product.id === addedProduct.id) {
+          console.log('Found product in cart')
+          product.quantity++
+          const stringified = JSON.stringify(cartProducts)
+          localStorage.setItem('cart', stringified)
+          foundItem = true
+          break
+        }
+      }
+    }
+
+    // if the product does not exist in the cart or if the cart is initially empty
+    // add the new product into cartProducts array
+    // reset local storage
+    if (!foundItem) {
+      console.log('Adding new item into cart')
+      addedProduct.quantity = 1
+      cartProducts.push(addedProduct)
+      const stringified = JSON.stringify(cartProducts)
+      localStorage.setItem('cart', stringified)
+    }
+
+    const parsed = JSON.parse(localStorage.getItem('cart'))
+    console.log('updated cart', parsed)
+  }
+
   render() {
     const selectedProduct = this.props.selectedProduct
     return selectedProduct ? (
@@ -58,13 +95,23 @@ class SingleProduct extends React.Component {
             <p>{selectedProduct.description}</p>
             <p>{`Price: $${selectedProduct.price} USD`}</p>
             <div>
-              <button
-                type="submit"
-                className="addtocartButton"
-                onClick={() => this.handleAddToCart(selectedProduct.id)}
-              >
-                Add To Cart
-              </button>
+              {this.props.user.id ? (
+                <button
+                  type="submit"
+                  className="addtocartButton"
+                  onClick={() => this.handleAddToCart(selectedProduct.id)}
+                >
+                  Add To Cart
+                </button>
+              ) : (
+                <button
+                  type="submit"
+                  className="addtocartButton"
+                  onClick={() => this.guestAddToCart(selectedProduct)}
+                >
+                  Add To Cart
+                </button>
+              )}
             </div>
           </div>
         </div>
