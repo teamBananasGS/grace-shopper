@@ -11,7 +11,9 @@ import SingleProduct from './components/SingleProduct'
 import SingleCategory from './components/SingleCategory'
 import Cart from './components/Cart'
 import Checkout from './components/Checkout'
+import GuestCheckOut from './components/GuestCheckout'
 import CompleteOrder from './components/CompleteOrder'
+import GuestCompleteOrder from './components/GuestCompleteOrder'
 import Admin from './components/admin'
 import {Login} from './components'
 
@@ -37,6 +39,12 @@ ReactDOM.render(
       />
       <Route exact path="/cart" component={Cart} />
       <Route exact path="/checkout" component={Checkout} />
+      <Route exact path="/checkout/guest" component={GuestCheckOut} />
+      <Route
+        exact
+        path="/checkout/complete/guest/:orderId"
+        component={GuestCompleteOrder}
+      />
       <Route
         exact
         path="/checkout/complete/:first/:last/:order"

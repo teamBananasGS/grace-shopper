@@ -1,11 +1,11 @@
 const router = require('express').Router()
-const {Order, PaymentMethod, User} = require('../db/models')
+const {Order, PaymentMethod, OrderProduct} = require('../db/models')
 
 module.exports = router
 
 router.put('/', async (req, res, next) => {
   try {
-    const paymentId = await PaymentMethod.findOne({
+    const payment = await PaymentMethod.findOne({
       where: {
         name: req.body.data.paymentName
       }
@@ -15,7 +15,7 @@ router.put('/', async (req, res, next) => {
       {
         datePurchased: date,
         status: 'complete',
-        paymentMethodId: paymentId.dataValues.id
+        paymentMethodId: payment.dataValues.id
       },
       {
         where: {
@@ -25,6 +25,36 @@ router.put('/', async (req, res, next) => {
       }
     )
     res.sendStatus(204)
+  } catch (err) {
+    next(err)
+  }
+})
+
+router.post('/guest', async (req, res, next) => {
+  try {
+    const guestCart = req.body.guestCart
+    const payment = await PaymentMethod.findOne({
+      where: {
+        name: req.body.paymentMethod
+      }
+    })
+
+    const datePurchased = new Date()
+    const order = await Order.create({
+      status: 'complete',
+      datePurchased,
+      paymentMethodId: payment.dataValues.id
+    })
+
+    for (let product of guestCart) {
+      await OrderProduct.create({
+        quantityPurchased: product.quantity,
+        pricePerItem: product.price,
+        productId: product.id,
+        orderId: order.dataValues.id
+      })
+    }
+    res.json(order)
   } catch (err) {
     next(err)
   }

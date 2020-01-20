@@ -91,7 +91,9 @@ class Checkout extends Component {
             <div>
               <hr />
               <ul>
-                <h4>Total Price: ${this.getTotalPrice()}</h4>
+                <h4>Subtotal: ${this.getTotalPrice()}</h4>
+                <h4>Tax: ${(this.getTotalPrice() * 0.08875).toFixed(2)}</h4>
+                <h4>Total: ${(this.getTotalPrice() * 1.08875).toFixed(2)}</h4>
               </ul>
             </div>
           </div>
