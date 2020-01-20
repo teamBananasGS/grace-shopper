@@ -14,6 +14,7 @@ import Checkout from './components/Checkout'
 import GuestCheckOut from './components/GuestCheckout'
 import CompleteOrder from './components/CompleteOrder'
 import GuestCompleteOrder from './components/GuestCompleteOrder'
+import Admin from './components/admin'
 import {Login} from './components'
 
 // establishes socket connection
@@ -24,7 +25,6 @@ ReactDOM.render(
     <Router history={history}>
       <Route exact path="/" component={App} user={store.user} />
       <Route exact path="/home" component={userHome} user={store.user} />
-      <Route exact path="/products" component={AllProducts} user={store.user} />
       <Route exact path="/login" component={Login} />
       <Route
         exact
@@ -50,6 +50,7 @@ ReactDOM.render(
         path="/checkout/complete/:first/:last/:order"
         component={CompleteOrder}
       />
+      <Route exact path="/admin" component={Admin} user={store.user} />
     </Router>
   </Provider>,
   document.getElementById('app')

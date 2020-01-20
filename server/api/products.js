@@ -6,7 +6,9 @@ module.exports = router
 // SERVES ALL PRODUCTS
 router.get('/', async (req, res, next) => {
   try {
-    const products = await Product.findAll()
+    const products = await Product.findAll({
+      order: ['category', 'name']
+    })
     res.json(products)
   } catch (err) {
     next(err)
@@ -17,7 +19,6 @@ router.get('/', async (req, res, next) => {
 router.get('/:category', async (req, res, next) => {
   try {
     const categoryName = req.params.category
-    console.log(categoryName)
     const foundCategory = await Product.findAll({
       where: {
         category: categoryName
@@ -39,6 +40,24 @@ router.get('/:category/:productId', async (req, res, next) => {
       }
     })
     res.send(singleProduct)
+  } catch (err) {
+    next(err)
+  }
+})
+
+// UPDATES STOCK BY PRODUCT ID
+router.put('/update/:productId', async (req, res, next) => {
+  try {
+    console.log(req.body.data)
+    await Product.update(
+      {stock: req.body.data.newQuantity},
+      {
+        where: {
+          id: req.body.data.productId
+        }
+      }
+    )
+    res.sendStatus(204)
   } catch (err) {
     next(err)
   }
