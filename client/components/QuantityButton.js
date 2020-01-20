@@ -13,7 +13,10 @@ class QuantityButton extends Component {
 
   increment() {
     this.setState({
-      quantity: this.state.quantity + 1
+      quantity:
+        this.state.quantity < this.props.stock
+          ? this.state.quantity + 1
+          : this.props.stock
     })
   }
 
@@ -24,6 +27,7 @@ class QuantityButton extends Component {
   }
 
   render() {
+    console.log(this.props.stock)
     return (
       <div>
         <div className="quantity-input">

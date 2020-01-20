@@ -11,6 +11,7 @@ import SingleProduct from './components/SingleProduct'
 import SingleCategory from './components/SingleCategory'
 import Cart from './components/Cart'
 import Checkout from './components/Checkout'
+import CompleteOrder from './components/CompleteOrder'
 import {Login} from './components'
 
 // establishes socket connection
@@ -36,7 +37,11 @@ ReactDOM.render(
       />
       <Route exact path="/cart" component={Cart} />
       <Route exact path="/checkout" component={Checkout} />
-      <Route exact path="/checkout/complete" />
+      <Route
+        exact
+        path="/checkout/complete/:first/:last/:order"
+        component={CompleteOrder}
+      />
     </Router>
   </Provider>,
   document.getElementById('app')
