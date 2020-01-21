@@ -3,8 +3,18 @@ import {
   GET_SINGLE_CATEGORY,
   GET_SINGLE_PRODUCT,
   GET_USER_CART,
-  REMOVE_USER_CART
+  REMOVE_USER_CART,
+  GET_ALL_USERS
 } from './actioncreators'
+
+export const allUsersReducer = (state = [], action) => {
+  switch (action.type) {
+    case GET_ALL_USERS:
+      return action.allUsers
+    default:
+      return state
+  }
+}
 
 export const allProductsReducer = (state = [], action) => {
   switch (action.type) {
@@ -16,6 +26,7 @@ export const allProductsReducer = (state = [], action) => {
       return state
   }
 }
+
 export const singleCategoryReducer = (state = [], action) => {
   switch (action.type) {
     case GET_SINGLE_CATEGORY:

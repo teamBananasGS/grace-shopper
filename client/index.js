@@ -13,6 +13,7 @@ import Cart from './components/Cart'
 import Checkout from './components/Checkout'
 import GuestCheckOut from './components/GuestCheckout'
 import CompleteOrder from './components/CompleteOrder'
+import AllUsers from './components/allusers'
 import GuestCompleteOrder from './components/GuestCompleteOrder'
 import Admin from './components/admin'
 import {Login} from './components'
@@ -51,6 +52,13 @@ ReactDOM.render(
         component={CompleteOrder}
       />
       <Route exact path="/admin" component={Admin} user={store.user} />
+      <Route
+        exact
+        path="/admin/products"
+        component={AllProducts}
+        user={store.user}
+      />
+      <Route exact path="/admin/users" component={AllUsers} user={store.user} />
     </Router>
   </Provider>,
   document.getElementById('app')
