@@ -12,12 +12,12 @@ describe('Orders model', () => {
 
     beforeEach(async () => {
       testOrder = await Order.create({
-        status: 'Complete'
+        status: 'complete'
       })
     })
-
+    // ORDER STATUS IS COMPLETE ONCE ORDER IS FINALIZED
     it('returns an order status of complete', () => {
-      expect(testOrder.status).to.be.equal('Complete')
+      expect(testOrder.status).to.be.equal('complete')
     })
   })
 
@@ -27,9 +27,9 @@ describe('Orders model', () => {
     beforeEach(async () => {
       testOrder = await Order.create()
     })
-
+    // ORDER STATUS IS SET AS PENDING FROM THE START OF AN INSTANCE
     it('returns default status of pending if no status has been provided', () => {
-      expect(testOrder.status).to.be.equal('Pending')
+      expect(testOrder.status).to.be.equal('pending')
     })
   })
 })
