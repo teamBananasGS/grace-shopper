@@ -17,23 +17,29 @@ class SingleCategory extends Component {
 
   render() {
     const {selectedCategory} = this.props
+    let category =
+      this.props.category[0].toUpperCase() + this.props.category.slice(1)
+    if (category === 'Watch') category += 'es'
+    else category += 's'
     return selectedCategory ? (
       <div>
         <Navbar />
-        <h3 className="allProductsTitle">All Products</h3>
+        <h3 className="allProductsTitle">All {category}</h3>
         <hr />
         {selectedCategory.map(product => {
           return (
             <div className="product" key={product.id}>
-              <ul id="productList">
-                <p>
-                  <Link to={`/products/${product.category}/${product.id}`}>
-                    <img id="productImage" src={product.imageUrl} />
-                    <br />
-                    <p className="centerProductname">{product.name}</p>
-                  </Link>
-                </p>
-              </ul>
+              <div id="allproductscontainer">
+                <div id="productList">
+                  <p>
+                    <Link to={`/products/${product.category}/${product.id}`}>
+                      <img id="productImage" src={product.imageUrl} />
+                      <br />
+                      <p className="centerProductname">{product.name}</p>
+                    </Link>
+                  </p>
+                </div>
+              </div>
             </div>
           )
         })}

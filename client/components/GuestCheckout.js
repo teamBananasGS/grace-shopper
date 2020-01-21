@@ -1,7 +1,5 @@
 import React, {Component} from 'react'
 import Navbar from './navbar'
-import {connect} from 'react-redux'
-import {Link} from 'react-router-dom'
 import Axios from 'axios'
 import {withRouter} from 'react-router-dom'
 
@@ -38,6 +36,7 @@ class GuestCheckout extends Component {
       this.setState({orderId: order.data.id})
       localStorage.clear()
       this.props.history.push(`/checkout/complete/guest/${this.state.orderId}`)
+      alert('Order placed!')
     } catch (error) {
       console.error(error)
     }

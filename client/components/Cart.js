@@ -32,18 +32,29 @@ class Cart extends Component {
   }
 
   async handleUpdateItem(productId, quantity) {
-    const orderId = this.props.userCart[0].id
-    await Axios.put(`/api/cart/update/${productId}`, {
-      data: {quantity, orderId}
-    })
-    this.props.onLoadUserCart(this.props.user.id)
+    try {
+      const orderId = this.props.userCart[0].id
+      await Axios.put(`/api/cart/update/${productId}`, {
+        data: {quantity, orderId}
+      })
+      this.props.onLoadUserCart(this.props.user.id)
+      console.log('New Quantity', quantity)
+      alert('Quantity updated!')
+    } catch (error) {
+      console.error(error)
+    }
   }
 
   async handleRemoveItem(productId) {
-    await Axios.delete(
-      `/api/cart/delete/${productId}/${this.props.userCart[0].id}`
-    )
-    this.props.onLoadUserCart(this.props.user.id)
+    try {
+      await Axios.delete(
+        `/api/cart/delete/${productId}/${this.props.userCart[0].id}`
+      )
+      this.props.onLoadUserCart(this.props.user.id)
+      alert('Item removed!')
+    } catch (error) {
+      console.error(error)
+    }
   }
 
   render() {
@@ -60,14 +71,14 @@ class Cart extends Component {
         <div className="some-page-wrapper">
           {userCart.map(product => {
             return (
-              <div className="product" key={product.id}>
-                <ul>
-                  <p className="cartImage">
-                    {' '}
+              <div key={product.id}>
+                <div className="cartproduct">
+                  <div>
                     <img id="productImageInCart" src={product.imageUrl} />{' '}
-                  </p>
+                  </div>
                   <div className="centercart">
-                    <p> {product.name} </p>
+                    <h3> {product.name} </h3>
+                    <p>{product.description}</p>
                     <p>Quantity: </p>{' '}
                     <QuantityButton
                       quantity={product.orderProduct.quantityPurchased}
@@ -85,18 +96,24 @@ class Cart extends Component {
                       Remove
                     </button>
                   </div>
-                </ul>
+                </div>
+                <hr />
               </div>
             )
           })}
         </div>
-        <div>
-          <p>{`Total Price: $${this.getTotalPrice()}`}</p>
-        </div>
-        <div>
-          <Link to="/checkout">
-            <button type="button">Checkout</button>
-          </Link>
+        <div id="totalprice">
+          <div>
+            <p>{`Total Price: $${this.getTotalPrice()}`}</p>
+          </div>
+          <span />
+          <div>
+            <Link to="/checkout">
+              <button type="button" className="checkoutbutton">
+                Checkout
+              </button>
+            </Link>
+          </div>
         </div>
       </div>
     ) : localStorage.getItem('cart') ? (
