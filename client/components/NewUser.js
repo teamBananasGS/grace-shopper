@@ -25,14 +25,15 @@ class newUser extends Component {
       [event.target.email]: event.target.value,
       [event.password]: event.target.value,
       [event.telephone]: event.target.value,
-      [event.address]: event.target.value,
-      [event.telephone]: event.target.value
+      [event.address]: event.target.value
     })
   }
   async handleSubmit(event) {
     event.preventDefault()
-    await Axios.post('/api/users', this.state)
+    await Axios.post('/api/users/', this.state)
     this.setState(this.state)
+    console.log(this.props)
+    this.props.history.push('/')
   }
 
   render() {

@@ -4,18 +4,8 @@ const {User, Order} = require('../db/models')
 
 module.exports = router
 
-//Route with protection
-// router.get('/', protector.isAdmin, async (req, res, next) => {
-//   try {
-//     const users = await User.findAll({})
-//     res.json(users)
-//   } catch (err) {
-//     next(err)
-//   }
-// })
-
-// Get All Users Protected
-router.get('/', async (req, res, next) => {
+// GETS ALL USERS (PROTECTED)
+router.get('/', protector.isAdmin, async (req, res, next) => {
   try {
     const users = await User.findAll({})
     res.json(users)
@@ -39,10 +29,11 @@ router.get('/checkorder/:userId', async (req, res, next) => {
   }
 })
 
-// Creating User
+// CREATES NEW USER
 router.post('/', async (req, res, next) => {
   try {
     const newUser = await User.create(req.body)
+    console.log(newUser)
     res.send(newUser)
   } catch (err) {
     next(err)

@@ -63,7 +63,7 @@ const SignupForm = props => {
 
             <label htmlFor="telephone">Telephone:</label>
             <input
-              placeholder="This field is required!"
+              placeholder="Address"
               onChange={handleChange}
               type="integer"
               name="telephone"
