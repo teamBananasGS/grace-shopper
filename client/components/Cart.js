@@ -116,7 +116,7 @@ class Cart extends Component {
           </div>
         </div>
       </div>
-    ) : localStorage.getItem('cart') ? (
+    ) : localStorage.getItem('cart') && !this.props.user.id ? (
       <GuestCart />
     ) : (
       <div>
