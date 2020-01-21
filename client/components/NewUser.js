@@ -18,21 +18,14 @@ class newUser extends Component {
     this.handleSubmit = this.handleSubmit.bind(this)
   }
   handleChange(event) {
-    event.preventDefault()
     this.setState({
-      [event.target.name]: event.target.value,
-      [event.target.firstName]: event.target.value,
-      [event.target.email]: event.target.value,
-      [event.password]: event.target.value,
-      [event.telephone]: event.target.value,
-      [event.address]: event.target.value
+      [event.target.name]: event.target.value
     })
   }
   async handleSubmit(event) {
     event.preventDefault()
     await Axios.post('/api/users/', this.state)
     this.setState(this.state)
-    console.log(this.props)
     this.props.history.push('/')
   }
 

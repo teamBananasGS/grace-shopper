@@ -33,7 +33,6 @@ router.get('/checkorder/:userId', async (req, res, next) => {
 router.post('/', async (req, res, next) => {
   try {
     const newUser = await User.create(req.body)
-    console.log(newUser)
     res.send(newUser)
   } catch (err) {
     next(err)
