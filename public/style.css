@@ -2,7 +2,7 @@ html {
   scroll-behavior: smooth;
 }
 body {
-  font-family: sans-serif;
+  font-family: Helvetica, sans-serif;
 }
 
 a {
@@ -20,6 +20,7 @@ ul {
 label {
   display: block;
 }
+
 nav a {
   /* position: sticky; */
   float: left;
@@ -143,6 +144,10 @@ h4 {
 .addtocartButton {
   font-family: Helvetica, sans-serif;
   font-size: 0.9em;
+  background: #333;
+  color: #e7e7e7;
+  padding: 10px;
+  border-color: #333;
 }
 
 .emptyCart {
@@ -156,6 +161,7 @@ nav {
   display: flex;
   flex-direction: row;
 }
+
 #powerSuitsTitle {
   display: flex;
   flex-direction: column;
@@ -175,12 +181,17 @@ nav {
   flex-direction: column;
   justify-content: center;
   text-align: center;
-  font-family: 'Arial Black', Gadget, sans-serif;
+  font-family: 'Arial Black', Gadget, Helvetica, sans-serif;
   margin-top: 50px;
 }
 
 img {
   width: 100%;
+}
+
+.cartproduct {
+  display: flex;
+  justify-content: space-evenly;
 }
 
 .productHolder {
@@ -275,4 +286,63 @@ hr {
 .stockButton {
   font-family: Helvetica, sans-serif;
   font-size: 0.9em;
+}
+
+#allproductscontainer {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.quantity-input input {
+  width: 10%;
+  text-align: center;
+}
+
+.removeButton {
+  background-color: #333;
+  color: white;
+  border-color: #333;
+}
+
+.removeButton:hover {
+  background-color: white;
+  color: #333;
+}
+
+.quantity-input span {
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+.checkoutbutton {
+  background-color: #333;
+  color: white;
+  border-color: #333;
+}
+
+.checkoutbutton:hover {
+  background-color: white;
+  color: #333;
+}
+
+.updateQtyBtn {
+  background-color: #333;
+  color: white;
+  border-color: #333;
+}
+
+.updateQtyBtn:hover {
+  background-color: white;
+  color: #333;
+}
+
+#totalprice {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+#totalprice span {
+  padding-left: 10px;
+  padding-right: 10px;
 }

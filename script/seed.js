@@ -70,17 +70,17 @@ async function seed() {
       category: 'suit',
       productkeyId: productKey[1].id,
       stock: 10,
-      description: 'A suit that makes you invincible',
+      description: 'The classic over powered suit. Grants you invincibility.',
       imageUrl: 'https://i.imgur.com/8xq4yCI.png'
     }),
     Product.create({
-      name: 'GoldMember Suit',
+      name: 'Gold Member Suit',
       price: 500.0,
       category: 'suit',
       productkeyId: productKey[1].id,
       stock: 56,
       description:
-        'A suit that allows you to shoot Gold bars out of your mouth',
+        'If you do not want to buy your way out, why not talk your way out. Allows you to shoot gold out of your mouth.',
       imageUrl: 'https://i.imgur.com/ldjOBfm.png'
     }),
     Product.create({

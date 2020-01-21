@@ -40,13 +40,18 @@ class Checkout extends Component {
   }
 
   async submitOrder() {
-    await Axios.put('/api/checkout', {
-      data: {
-        userId: this.props.user.id,
-        orderId: this.props.userCart[0].id,
-        paymentName: this.state.paymentMethod
-      }
-    })
+    try {
+      await Axios.put('/api/checkout', {
+        data: {
+          userId: this.props.user.id,
+          orderId: this.props.userCart[0].id,
+          paymentName: this.state.paymentMethod
+        }
+      })
+      alert('Order placed!')
+    } catch (error) {
+      console.error(error)
+    }
   }
 
   render() {
