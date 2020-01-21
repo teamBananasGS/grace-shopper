@@ -4,6 +4,7 @@ const {User, Order, OrderProduct} = require('../db/models')
 
 module.exports = router
 
+// GETS ALL USERS (PROTECTED)
 router.get('/', protector.isAdmin, async (req, res, next) => {
   try {
     const users = await User.findAll({
@@ -30,6 +31,16 @@ router.get('/checkorder/:userId', async (req, res, next) => {
       }
     })
     res.sendStatus(204)
+  } catch (err) {
+    next(err)
+  }
+})
+
+// CREATES NEW USER
+router.post('/', async (req, res, next) => {
+  try {
+    const newUser = await User.create(req.body)
+    res.send(newUser)
   } catch (err) {
     next(err)
   }

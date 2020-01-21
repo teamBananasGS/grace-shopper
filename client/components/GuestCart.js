@@ -1,7 +1,5 @@
 import React, {Component} from 'react'
 import Navbar from './navbar'
-import {connect} from 'react-redux'
-import Axios from 'axios'
 import {Link} from 'react-router-dom'
 import QuantityButton from './QuantityButton'
 
@@ -25,6 +23,7 @@ class GuestCart extends Component {
     }
     this.setState({guestCart: updateCart})
     localStorage.setItem('cart', JSON.stringify(updateCart))
+    alert('Updated quantity!')
   }
 
   handleRemoveItem(product, guestCart) {
@@ -32,6 +31,7 @@ class GuestCart extends Component {
     guestCart.splice(index, 1)
     this.setState({guestCart})
     localStorage.setItem('cart', JSON.stringify(guestCart))
+    alert(`Removed ${product.name}!`)
   }
 
   getTotalPrice(guestCart) {
@@ -51,14 +51,14 @@ class GuestCart extends Component {
         <div className="some-page-wrapper">
           {guestCart.map(product => {
             return (
-              <div className="product" key={product.id}>
-                <ul>
-                  <p className="cartImage">
-                    {' '}
-                    <img id="productImageInCart" src={product.imageUrl} />{' '}
-                  </p>
+              <div key={product.id}>
+                <div className="cartproduct">
+                  <div>
+                    <img id="productImageInCart" src={product.imageUrl} />
+                  </div>
                   <div className="centercart">
-                    <p> {product.name} </p>
+                    <h3> {product.name} </h3>
+                    <p>{product.description}</p>
                     <p>Quantity: </p>{' '}
                     <QuantityButton
                       quantity={product.quantity}
@@ -76,18 +76,24 @@ class GuestCart extends Component {
                       Remove
                     </button>
                   </div>
-                </ul>
+                </div>
+                <hr />
               </div>
             )
           })}
         </div>
-        <div>
-          <p>{`Total Price: $${this.getTotalPrice(guestCart)}`}</p>
-        </div>
-        <div>
-          <Link to="/checkout/guest">
-            <button type="button">Checkout</button>
-          </Link>
+        <div id="totalprice">
+          <div>
+            <p>{`Total Price: $${this.getTotalPrice(guestCart)}`}</p>
+          </div>
+          <span />
+          <div>
+            <Link to="/checkout/guest">
+              <button type="button" className="checkoutbutton">
+                Checkout
+              </button>
+            </Link>
+          </div>
         </div>
       </div>
     ) : (

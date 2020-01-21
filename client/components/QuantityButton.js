@@ -1,5 +1,4 @@
 import React, {Component} from 'react'
-import {connect} from 'react-redux'
 
 class QuantityButton extends Component {
   constructor(props) {
@@ -30,14 +29,29 @@ class QuantityButton extends Component {
     return (
       <div>
         <div className="quantity-input">
-          <button type="button" onClick={this.decrement}>
+          <button
+            type="button"
+            className="addsubtractbutton"
+            onClick={this.decrement}
+          >
             &mdash;
           </button>
-          <input type="text" value={this.state.quantity} readOnly />
-          <button type="button" onClick={this.increment}>
-            &#xff0b;
-          </button>
+          <input
+            className="cartQuantity"
+            type="text"
+            value={this.state.quantity}
+            readOnly
+          />
           <button
+            type="button"
+            className="addsubtractbutton"
+            onClick={this.increment}
+          >
+            &#xff0b;
+          </button>{' '}
+          <span />
+          <button
+            className="updateQtyBtn"
             type="button"
             value={this.state.quantity}
             onClick={() =>

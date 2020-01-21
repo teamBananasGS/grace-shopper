@@ -15,32 +15,35 @@ class SingleProduct extends React.Component {
     this.props.onLoadSingleProduct()
   }
 
-  async handleAddToCart(productId) {
+  async handleAddToCart(addedProduct) {
     const cart = this.props.userCart
-    const productUpdate = cart[0].products.filter(obj => obj.id === productId)
+    const productUpdate = cart[0].products.filter(
+      obj => obj.id === addedProduct.id
+    )
     const orderId = cart[0].id
 
     try {
       // if product exists in current cart, increment the quantity by one
       if (productUpdate[0] !== undefined) {
         const newQuantity = ++productUpdate[0].orderProduct.quantityPurchased
-        console.log(newQuantity)
-        await Axios.put(`/api/cart/update/${productId}`, {
+        await Axios.put(`/api/cart/update/${addedProduct.id}`, {
           data: {
             quantity: newQuantity,
             orderId
           }
         })
+        console.log('New Quantity', newQuantity)
       } else {
         // if product does not exist in current cart, we create a record in OrderProduct
-        await Axios.post(`/api/cart/update/${productId}`, {
-          productId: productId,
+        await Axios.post(`/api/cart/update/${addedProduct.id}`, {
+          productId: addedProduct.id,
           quantityPurchased: 1,
           pricePerItem: this.props.selectedProduct.price,
           orderId: orderId
         })
         this.props.onLoadUserCart(this.props.user.id)
       }
+      alert(`Added ${addedProduct.name} to cart!`)
     } catch (error) {
       console.error(error)
     }
@@ -80,6 +83,8 @@ class SingleProduct extends React.Component {
 
     const parsed = JSON.parse(localStorage.getItem('cart'))
     console.log('Updated cart details', parsed)
+
+    alert(`Added ${addedProduct.name} to cart!`)
   }
 
   render() {
@@ -99,9 +104,9 @@ class SingleProduct extends React.Component {
                 <button
                   type="submit"
                   className="addtocartButton"
-                  onClick={() => this.handleAddToCart(selectedProduct.id)}
+                  onClick={() => this.handleAddToCart(selectedProduct)}
                 >
-                  Add To Cart
+                  ADD TO CART
                 </button>
               ) : (
                 <button
@@ -109,7 +114,7 @@ class SingleProduct extends React.Component {
                   className="addtocartButton"
                   onClick={() => this.guestAddToCart(selectedProduct)}
                 >
-                  Add To Cart
+                  ADD TO CART
                 </button>
               )}
             </div>
