@@ -5,6 +5,7 @@ export const GET_SINGLE_PRODUCT = 'GET_SINGLE_PRODUCT'
 export const GET_SINGLE_CATEGORY = 'GET_SINGLE_CATEGORY'
 export const GET_USER_CART = 'GET_USER_CART'
 export const REMOVE_USER_CART = 'REMOVE_USER_CART'
+export const GET_ALL_USERS = 'GET_ALL_USER'
 
 export const getSingleProduct = productId => {
   return {
@@ -27,6 +28,13 @@ export const allProducts = products => {
   }
 }
 
+export const allUsers = users => {
+  return {
+    type: GET_ALL_USERS,
+    allUsers: users
+  }
+}
+
 export const getUserCart = cart => {
   return {
     type: GET_USER_CART,
@@ -38,6 +46,18 @@ export const removeUserCart = () => {
   return {
     type: REMOVE_USER_CART,
     userCart: []
+  }
+}
+
+export const loadAllUsers = function() {
+  return function(dispatch) {
+    Axios.get('/api/users')
+      .then(res => res.data)
+      .then(users => {
+        const action = allUsers(users)
+        dispatch(action)
+      })
+      .catch(err => console.error(err))
   }
 }
 

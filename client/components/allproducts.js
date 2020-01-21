@@ -16,11 +16,11 @@ class AllProducts extends Component {
     this.props.onLoadAllProducts()
   }
 
-  componentDidUpdate(prevProps) {
-    if (prevProps.quantity !== this.props.quantity) {
-      this.props.onLoadAllProducts()
-    }
-  }
+  // componentDidUpdate(prevProps) {
+  // if (prevProps.allProducts !== this.props.allProducts) {
+  //   this.props.onLoadAllProducts()
+  // }
+  // }
 
   // totalInventory() {
   //   const total = this.props.allProducts.reduce((acc, product) => {
@@ -63,22 +63,10 @@ class AllProducts extends Component {
 
   render() {
     const {allProducts} = this.props
-    // console.log('this.props', allProducts)
     // console.log('total inventory', this.totalInventory())
     return (
       <div>
         <Navbar />
-        {/* <thead>
-          <tr>
-            <th>#</th>
-            <th>Picture</th>
-            <th>Name</th>
-            <th>Price</th>
-            <th>Available In Stock</th>
-            <th>Increase Stock</th>
-            <th>Decrease Stock</th>
-          </tr>
-        </thead> */}
         {allProducts.map(product => {
           return (
             <div className="adminProductContainer" key={product.id}>
@@ -86,6 +74,15 @@ class AllProducts extends Component {
                 <img id="adminProductImage" src={product.imageUrl} />
                 <h3 id="productTitle">{product.name}</h3>
                 <h3 id="productPrice">{product.price}</h3>
+                <div>
+                  <button
+                    type="submit"
+                    className="stockButton"
+                    onClick={() => this.handleEditPrice(product.id)}
+                  >
+                    Edit
+                  </button>
+                </div>
                 <h3 id="productQuantity">{`In Stock: ${product.stock}`}</h3>
                 <div>
                   <button
@@ -114,11 +111,8 @@ class AllProducts extends Component {
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    allProducts: state.allProducts
-    // quantity: ownProps.allProducts
-    // .reduce((acc, product) => {
-    //   return acc + product.stock
-    // }, 0)
+    allProducts: state.allProducts,
+    quantity: ownProps.allProducts
   }
 }
 

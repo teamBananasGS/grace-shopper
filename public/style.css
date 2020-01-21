@@ -135,6 +135,7 @@ form div {
   display: flex;
   justify-content: space-evenly;
 }
+
 h4 {
   font-style: italic;
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
@@ -269,17 +270,23 @@ hr {
 }
 
 .adminProductContainer {
-  display: flex;
+  /* display: flex; */
   /* width: 50px; */
-  /* justify-content: flex-start; */
+  justify-content: center;
 }
 
 .productDetails {
   display: flex;
-  justify-content: flex-start;
+  justify-content: space-between;
   align-items: center;
   margin: 7px;
   padding: 5px;
+}
+
+h3 {
+  display: flex;
+  justify-content: flex-start;
+  width: 5em;
 }
 
 #adminProductImage {
@@ -292,6 +299,21 @@ hr {
 .stockButton {
   font-family: Helvetica, sans-serif;
   font-size: 0.9em;
+}
+
+
+.adminUserContainer {
+  /* display: flex; */
+  /* width: 50px; */
+  justify-content: flex-start;
+}
+
+.userDetails {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 7px;
+  padding: 5px;
 }
 
 #allproductscontainer {
