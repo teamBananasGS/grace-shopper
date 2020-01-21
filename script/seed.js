@@ -45,7 +45,8 @@ async function seed() {
       email: 'stark@gmail.com',
       address: 'Manhattan',
       telephone: 123467,
-      password: '123'
+      password: '123',
+      isAdmin: true
     })
   ])
 

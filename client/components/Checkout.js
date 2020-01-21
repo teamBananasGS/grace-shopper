@@ -51,6 +51,7 @@ class Checkout extends Component {
 
   render() {
     const user = this.props.user
+    const orderId = this.props.userCart[0].id
     return user.id ? (
       <div>
         <Navbar />
@@ -90,12 +91,18 @@ class Checkout extends Component {
             <div>
               <hr />
               <ul>
-                <h4>Total Price: ${this.getTotalPrice()}</h4>
+                <h4>Subtotal: ${this.getTotalPrice()}</h4>
+                <h4>Tax: ${(this.getTotalPrice() * 0.08875).toFixed(2)}</h4>
+                <h4>Total: ${(this.getTotalPrice() * 1.08875).toFixed(2)}</h4>
               </ul>
             </div>
           </div>
           <div>
-            <Link to="/checkout/complete">
+            <Link
+              to={`/checkout/complete/${user.firstName}/${
+                user.lastName
+              }/${orderId}`}
+            >
               <button type="submit" onClick={this.submitOrder}>
                 Place Order
               </button>
