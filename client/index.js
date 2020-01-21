@@ -16,6 +16,8 @@ import CompleteOrder from './components/CompleteOrder'
 import GuestCompleteOrder from './components/GuestCompleteOrder'
 import Admin from './components/admin'
 import {Login} from './components'
+import newUser from './components/NewUser'
+// import {Signup} from './components/auth-form'
 
 // establishes socket connection
 import './socket'
@@ -26,6 +28,7 @@ ReactDOM.render(
       <Route exact path="/" component={App} user={store.user} />
       <Route exact path="/home" component={userHome} user={store.user} />
       <Route exact path="/login" component={Login} />
+      <Route exact path="/signup" component={newUser} />
       <Route
         exact
         path="/products/:category"

@@ -41,7 +41,7 @@ const User = db.define('user', {
     type: Sequelize.STRING
   },
   telephone: {
-    type: Sequelize.INTEGER
+    type: Sequelize.STRING
   },
   isAdmin: {
     type: Sequelize.BOOLEAN,
