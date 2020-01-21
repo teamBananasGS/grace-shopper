@@ -55,7 +55,7 @@ class App extends React.Component {
         </div>
         <div className="homeImages2">
           <img
-            src="images/PowerSuitsForHer.png"
+            src="images/PowerSuitsForher.png"
             alt="image of Women wearing Suits"
           />
         </div>
