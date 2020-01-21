@@ -114,6 +114,7 @@ nav a {
 #productList {
   text-align: center;
 }
+
 .allProductsTitle {
   text-align: center;
   padding-left: 40px;
@@ -283,7 +284,7 @@ hr {
   padding: 5px;
 }
 
-h3 {
+.productDetails h3 {
   display: flex;
   justify-content: flex-start;
   width: 5em;
@@ -300,7 +301,6 @@ h3 {
   font-family: Helvetica, sans-serif;
   font-size: 0.9em;
 }
-
 
 .adminUserContainer {
   /* display: flex; */
