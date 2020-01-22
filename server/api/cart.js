@@ -4,6 +4,7 @@ const {Order, Product, OrderProduct} = require('../db/models')
 module.exports = router
 
 // SERVES UP USER CART
+// add protection on route
 router.get('/:userId', async (req, res, next) => {
   try {
     const user = req.params.userId
@@ -30,6 +31,7 @@ router.put('/update/:productId', async (req, res, next) => {
       {
         where: {
           productId: productId
+          // add user id
         }
       }
     )
