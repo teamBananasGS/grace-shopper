@@ -37,7 +37,7 @@ router.get('/checkorder/:userId', async (req, res, next) => {
 })
 
 // CREATES NEW USER
-router.post('/', async (req, res, next) => {
+router.post('/', protector.isAdmin, async (req, res, next) => {
   try {
     const newUser = await User.create(req.body)
     res.send(newUser)

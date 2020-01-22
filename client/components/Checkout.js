@@ -38,9 +38,9 @@ class Checkout extends Component {
     return total
   }
 
-  async submitOrder() {
+  async submitOrder(userId) {
     try {
-      await Axios.put('/api/checkout', {
+      await Axios.put(`/api/checkout/${userId}`, {
         data: {
           userId: this.props.user.id,
           orderId: this.props.userCart[0].id,

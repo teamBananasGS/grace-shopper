@@ -14,4 +14,17 @@ protector.isAdmin = (req, res, next) => {
   }
 }
 
+protector.isUser = (req, res, next) => {
+  if (!req.user) {
+    next(newError)
+  } else if (
+    Number(req.body.data.userId) !== Number(req.params.userId) &&
+    !req.user.isAdmin
+  ) {
+    next(forbiddenError)
+  } else {
+    next()
+  }
+}
+
 module.exports = protector
