@@ -48,7 +48,6 @@ class Checkout extends Component {
           paymentName: this.state.paymentMethod
         }
       })
-      alert('Order placed!')
     } catch (error) {
       console.error(error)
     }

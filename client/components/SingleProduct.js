@@ -22,6 +22,7 @@ class SingleProduct extends React.Component {
     )
     const orderId = cart[0].id
 
+    //no alerts, use toast
     try {
       // if product exists in current cart, increment the quantity by one
       if (productUpdate[0] !== undefined) {
@@ -32,7 +33,6 @@ class SingleProduct extends React.Component {
             orderId
           }
         })
-        console.log('New Quantity', newQuantity)
       } else {
         // if product does not exist in current cart, we create a record in OrderProduct
         await Axios.post(`/api/cart/update/${addedProduct.id}`, {
@@ -43,7 +43,6 @@ class SingleProduct extends React.Component {
         })
         this.props.onLoadUserCart(this.props.user.id)
       }
-      alert(`Added ${addedProduct.name} to cart!`)
     } catch (error) {
       console.error(error)
     }
@@ -80,11 +79,6 @@ class SingleProduct extends React.Component {
       const stringified = JSON.stringify(cartProducts)
       localStorage.setItem('cart', stringified)
     }
-
-    const parsed = JSON.parse(localStorage.getItem('cart'))
-    console.log('Updated cart details', parsed)
-
-    alert(`Added ${addedProduct.name} to cart!`)
   }
 
   render() {

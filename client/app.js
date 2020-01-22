@@ -76,7 +76,7 @@ const mapStateToProps = state => {
   }
 }
 
-const mapDispatchToProps = (dispatch, ownProps) => {
+const mapDispatchToProps = dispatch => {
   return {
     onLoadUserCart: function(userId) {
       const thunk = loadUserCart(userId)
