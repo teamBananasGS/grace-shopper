@@ -1,9 +1,10 @@
 const router = require('express').Router()
 const {Order, PaymentMethod, OrderProduct} = require('../db/models')
+const protector = require('../auth/protector')
 
 module.exports = router
 
-router.put('/', async (req, res, next) => {
+router.put('/:userId', protector.isUser, async (req, res, next) => {
   try {
     const payment = await PaymentMethod.findOne({
       where: {
