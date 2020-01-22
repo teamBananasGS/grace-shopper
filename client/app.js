@@ -1,6 +1,5 @@
 import React from 'react'
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
-import history from './history'
 import store from './store'
 import userHome from './components/user-home'
 import SingleCategory from './components/SingleCategory'

@@ -1,5 +1,4 @@
 import React, {Component} from 'react'
-import Navbar from './navbar'
 import {connect} from 'react-redux'
 import {loadUserCart} from '../store/actioncreators'
 import Axios from 'axios'
@@ -34,11 +33,10 @@ class Cart extends Component {
   async handleUpdateItem(productId, quantity) {
     try {
       const orderId = this.props.userCart[0].id
-      await Axios.put(`/api/cart/update/${productId}`, {
+      await Axios.put(`/api/cart/update/${productId}/${orderId}`, {
         data: {quantity, orderId}
       })
       this.props.onLoadUserCart(this.props.user.id)
-      console.log('New Quantity', quantity)
     } catch (error) {
       console.error(error)
     }

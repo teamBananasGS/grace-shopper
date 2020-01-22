@@ -4,6 +4,7 @@ export const GET_ALL_PRODUCTS = 'GET_ALL_PRODUCTS'
 export const GET_SINGLE_PRODUCT = 'GET_SINGLE_PRODUCT'
 export const GET_SINGLE_CATEGORY = 'GET_SINGLE_CATEGORY'
 export const GET_USER_CART = 'GET_USER_CART'
+export const UPDATE_USER_CART = 'UPDATE_USER_CART'
 export const REMOVE_USER_CART = 'REMOVE_USER_CART'
 export const GET_ALL_USERS = 'GET_ALL_USER'
 
@@ -38,6 +39,13 @@ export const allUsers = users => {
 export const getUserCart = cart => {
   return {
     type: GET_USER_CART,
+    userCart: cart
+  }
+}
+
+export const updateUserCart = cart => {
+  return {
+    type: UPDATE_USER_CART,
     userCart: cart
   }
 }
@@ -106,5 +114,47 @@ export const loadUserCart = function(userId) {
         dispatch(action)
       })
       .catch(err => console.error(err))
+  }
+}
+
+export const loadUpdatedUserCart = function(cart, productToUpdate) {
+  return function(dispatch) {
+    let product,
+      index = 0
+    const orderId = cart[0].id
+
+    for (let obj of cart[0].products) {
+      if (obj.id === productToUpdate.id) {
+        product = obj
+        break
+      } else {
+        index++
+      }
+    }
+
+    if (product !== undefined) {
+      const quantity = ++product.orderProduct.quantityPurchased
+      Axios.put(`/api/cart/update/${productToUpdate.id}/${orderId}`, {
+        data: {quantity}
+      })
+        .then(() => {
+          cart[0].products[index].orderProduct.quantityPurchased = quantity
+          dispatch(updateUserCart(cart))
+        })
+        .catch(err => console.error(err))
+    } else {
+      Axios.post(`/api/cart/update/${productToUpdate.id}`, {
+        productId: productToUpdate.id,
+        quantityPurchased: 1,
+        pricePerItem: productToUpdate.price,
+        orderId: orderId
+      })
+        .then(res => {
+          productToUpdate.orderProduct = res.data
+          cart[0].products.push(productToUpdate)
+          dispatch(updateUserCart(cart))
+        })
+        .catch(err => console.error(err))
+    }
   }
 }

@@ -1,13 +1,15 @@
 import React from 'react'
-import Navbar from './navbar'
 import {connect} from 'react-redux'
-import {loadSingleProduct, loadUserCart} from '../store/actioncreators'
-import Axios from 'axios'
+import {
+  loadSingleProduct,
+  loadUserCart,
+  loadUpdatedUserCart
+} from '../store/actioncreators'
 
 class SingleProduct extends React.Component {
   constructor() {
     super()
-    this.handleAddToCart = this.handleAddToCart.bind(this)
+    this.userAddToCart = this.userAddToCart.bind(this)
     this.guestAddToCart = this.guestAddToCart.bind(this)
   }
 
@@ -15,37 +17,9 @@ class SingleProduct extends React.Component {
     this.props.onLoadSingleProduct()
   }
 
-  async handleAddToCart(addedProduct) {
+  userAddToCart(addedProduct) {
     const cart = this.props.userCart
-    const productUpdate = cart[0].products.filter(
-      obj => obj.id === addedProduct.id
-    )
-    const orderId = cart[0].id
-
-    //no alerts, use toast
-    try {
-      // if product exists in current cart, increment the quantity by one
-      if (productUpdate[0] !== undefined) {
-        const newQuantity = ++productUpdate[0].orderProduct.quantityPurchased
-        await Axios.put(`/api/cart/update/${addedProduct.id}`, {
-          data: {
-            quantity: newQuantity,
-            orderId
-          }
-        })
-      } else {
-        // if product does not exist in current cart, we create a record in OrderProduct
-        await Axios.post(`/api/cart/update/${addedProduct.id}`, {
-          productId: addedProduct.id,
-          quantityPurchased: 1,
-          pricePerItem: this.props.selectedProduct.price,
-          orderId: orderId
-        })
-        this.props.onLoadUserCart(this.props.user.id)
-      }
-    } catch (error) {
-      console.error(error)
-    }
+    this.props.onUpdateUserCart(cart, addedProduct)
   }
 
   guestAddToCart(addedProduct) {
@@ -59,7 +33,6 @@ class SingleProduct extends React.Component {
       for (let product of cartProducts) {
         // if product found, add quantity by 1, reset local storage
         if (product.id === addedProduct.id) {
-          console.log('Found product in cart')
           product.quantity++
           const stringified = JSON.stringify(cartProducts)
           localStorage.setItem('cart', stringified)
@@ -73,7 +46,6 @@ class SingleProduct extends React.Component {
     // add the new product into cartProducts array
     // reset local storage
     if (!foundItem) {
-      console.log('Adding new item into cart')
       addedProduct.quantity = 1
       cartProducts.push(addedProduct)
       const stringified = JSON.stringify(cartProducts)
@@ -82,6 +54,8 @@ class SingleProduct extends React.Component {
   }
 
   render() {
+    const addButtonText =
+      this.props.selectedProduct.stock > 0 ? 'ADD TO CART' : 'OUT OF STOCK'
     const selectedProduct = this.props.selectedProduct
     return selectedProduct ? (
       <div>
@@ -97,9 +71,9 @@ class SingleProduct extends React.Component {
                 <button
                   type="submit"
                   className="addtocartButton"
-                  onClick={() => this.handleAddToCart(selectedProduct)}
+                  onClick={() => this.userAddToCart(selectedProduct)}
                 >
-                  ADD TO CART
+                  {addButtonText}
                 </button>
               ) : (
                 <button
@@ -107,7 +81,7 @@ class SingleProduct extends React.Component {
                   className="addtocartButton"
                   onClick={() => this.guestAddToCart(selectedProduct)}
                 >
-                  ADD TO CART
+                  {addButtonText}
                 </button>
               )}
             </div>
@@ -138,6 +112,10 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     },
     onLoadUserCart: function(userId) {
       const thunk = loadUserCart(userId)
+      dispatch(thunk)
+    },
+    onUpdateUserCart: function(cart, productToUpdate) {
+      const thunk = loadUpdatedUserCart(cart, productToUpdate)
       dispatch(thunk)
     }
   }
