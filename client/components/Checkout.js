@@ -40,6 +40,7 @@ class Checkout extends Component {
 
   async submitOrder(userId) {
     try {
+      console.log(userId)
       await Axios.put(`/api/checkout/${userId}`, {
         data: {
           userId: this.props.user.id,
@@ -102,11 +103,14 @@ class Checkout extends Component {
                 <h4>Tax: ${(this.getTotalPrice() * 0.08875).toFixed(2)}</h4>
                 <h4>Total: ${(this.getTotalPrice() * 1.08875).toFixed(2)}</h4>
                 <Link
-                  to={`/checkout/complete/${this.props.user.id.firstName}/${
-                    this.props.user.id.lastName
+                  to={`/checkout/complete/${this.props.user.firstName}/${
+                    this.props.user.lastName
                   }/${orderId}`}
                 >
-                  <button type="submit" onClick={this.submitOrder}>
+                  <button
+                    type="submit"
+                    onClick={() => this.submitOrder(this.props.user.id)}
+                  >
                     Place Order
                   </button>
                 </Link>

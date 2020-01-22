@@ -4,6 +4,7 @@ import {Link} from 'react-router-dom'
 class CompleteOrder extends Component {
   render() {
     const details = this.props.match.params
+    console.log(details)
     return (
       <div>
         <div>

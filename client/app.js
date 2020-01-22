@@ -16,19 +16,19 @@ import {Login} from './components'
 import NewUser from './components/NewUser'
 import HomePage from './components/HomePage'
 import Navbar from './components/navbar'
-import {ToastProvider} from 'react-toast-notifications'
+// import {ToastProvider} from 'react-toast-notifications'
 
-const MyCustomToast = ({appearance, children}) => (
-  <div style={{background: appearance === 'error' ? 'red' : 'green'}}>
-    {children}
-  </div>
-)
+// const MyCustomToast = ({appearance, children}) => (
+//   <div style={{background: appearance === 'error' ? 'red' : 'green'}}>
+//     {children}
+//   </div>
+// )
 
 const App = () => {
   return (
     <div>
       <Navbar />
-      <ToastProvider components={{Toast: MyCustomToast}} />
+      {/* <ToastProvider components={{Toast: MyCustomToast}} /> */}
       <div>
         <Switch>
           <Route exact path="/" component={HomePage} user={store.user} />
