@@ -3,11 +3,11 @@ const db = require('../index')
 const Order = db.model('order')
 
 describe('Orders model', () => {
-  beforeEach(() => {
+  beforeEach('Synchronize the model', () => {
     return db.sync({force: true})
   })
 
-  describe('Status of an Order', () => {
+  describe('Status of an Completed Order', () => {
     let testOrder
 
     beforeEach(async () => {
@@ -21,7 +21,7 @@ describe('Orders model', () => {
     })
   })
 
-  describe('returns default status of pending if no status has been provided', () => {
+  describe('Status of Newly created Order', () => {
     let testOrder
 
     beforeEach(async () => {

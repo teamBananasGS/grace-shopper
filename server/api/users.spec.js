@@ -1,38 +1,47 @@
-/* global describe beforeEach it */
-
 const {expect} = require('chai')
 const request = require('supertest')
 const db = require('../db')
 const app = require('../index')
 const User = db.model('user')
-const protector = require('../auth/protector')
 
 describe('User routes', () => {
   beforeEach(() => {
     return db.sync({force: true})
   })
 
-  describe('/api/users', () => {
-    const kensEmail = 'kenBill@email.com'
-
+  describe('/api/users/', () => {
     beforeEach(() => {
       return User.create({
-        firstName: 'Ken',
-        lastName: 'Bill',
-        email: kensEmail,
-        password: '143',
-        telephone: '1234567',
-        isAdmin: true
+        firstName: 'cody',
+        lastName: 'zack',
+        email: 'cody@gmail.com',
+        password: '234',
+        address: '125 manor hill',
+        telephone: '123456'
       })
     })
-
-    it('GET /api/users', protector.isAdmin, async () => {
-      const res = await request(app)
+    // NOBODY BUT AN ADMIN CAN ACCESS OUT API USER ROUTES
+    it("Non Admin Users shouldn't be able to access the /api/users route", async () => {
+      await request(app)
         .get('/api/users')
-        .expect(200)
-
-      expect(res.body).to.be.an('array')
-      expect(res.body[0].email).to.be.equal(kensEmail)
+        .expect(401)
     })
-  }) // end describe('/api/users')
-}) // end describe('User routes')
+  })
+
+  // POST ROUTE CREATES NEW USER TEST MUST HAVE VALID FIELDS
+  it('Creates a new user', async () => {
+    const res = await request(app)
+      .post('/api/users/')
+      .send({
+        firstName: 'Jon',
+        lastName: 'Doe',
+        email: 'jon@gmail.com',
+        password: '1234',
+        address: '125 manor hill',
+        telephone: '123456'
+      })
+      .expect(200)
+    expect(res.body).to.be.an('object')
+    expect(res.body.firstName).to.be.equal('Jon')
+  })
+})

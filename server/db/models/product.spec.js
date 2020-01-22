@@ -62,7 +62,7 @@ describe('Products model', () => {
     })
   })
 
-  describe('Is Not Cheap', () => {
+  describe('Is Not UnderPriced', () => {
     let waterSuit
 
     beforeEach(async () => {
@@ -80,7 +80,7 @@ describe('Products model', () => {
     })
   })
 
-  describe('Has Stock availble', () => {
+  describe('Has Stock available', () => {
     let veganSuit
 
     beforeEach(async () => {
@@ -92,8 +92,8 @@ describe('Products model', () => {
         description: 'Suit will make you a vegan'
       })
     })
-
-    it('requires stock to atleast be 1 when creating instance', () => {
+    // CHECKS THAT WE ARE ADDING ATLEAST 1 IN STOCK WHEN CREATING NEW PRODUCT
+    it('requires stock to atleast be atleast 1 when creating an instance', () => {
       expect(Number(veganSuit.stock)).to.be.greaterThan(0)
     })
   })
