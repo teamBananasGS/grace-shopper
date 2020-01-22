@@ -49,14 +49,12 @@ class GuestCheckout extends Component {
     return localStorage.getItem('cart') ? (
       <div>
         <div className="guestcheckoutbox">
-          <h4>Guest Checkout</h4>
+          <h3>Guest Checkout</h3>
           <hr />
           <div className="shippingrow">
             <div>
               <ul>
                 <h4>Shipping Address</h4>
-                {/* <li>{`${user.firstName} ${user.lastName}`}</li>
-                <li>{user.address}</li> */}
               </ul>
             </div>
             <div>
@@ -101,14 +99,14 @@ class GuestCheckout extends Component {
                     .toFixed(2)
                     .toLocaleString('en')}
                 </h4>
+                <button
+                  type="submit"
+                  className="placeorder"
+                  onClick={this.submitOrder}
+                >
+                  Place Order
+                </button>
               </ul>
-            </div>
-            <div>
-              {/* <Link to='/checkout/complete/guest' params={{ order: this.state.orderId }}> */}
-              <button type="submit" onClick={this.submitOrder}>
-                Place Order
-              </button>
-              {/* </Link> */}
             </div>
           </div>
         </div>

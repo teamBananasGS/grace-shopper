@@ -66,21 +66,21 @@ async function seed() {
     // ============= SUITS =================
     Product.create({
       name: 'The OG Power Suit',
-      price: 500.0,
+      price: 10000,
       category: 'suit',
       productkeyId: productKey[1].id,
       stock: 10,
-      description: 'The classic over powered suit. Grants you invincibility.',
+      description: 'The classic over-powered suit. Grants you invincibility.',
       imageUrl: 'https://i.imgur.com/8xq4yCI.png'
     }),
     Product.create({
-      name: 'Gold Member Suit',
+      name: 'Gold Manny Suit',
       price: 500.0,
       category: 'suit',
       productkeyId: productKey[1].id,
       stock: 56,
       description:
-        'If you do not want to buy your way out, why not talk your way out. Allows you to shoot gold out of your mouth.',
+        'Why buy your way out, when you can talk your way out. Allows you to shoot gold out of your mouth.',
       imageUrl: 'https://i.imgur.com/ldjOBfm.png'
     }),
     Product.create({
@@ -90,7 +90,7 @@ async function seed() {
       productkeyId: productKey[1].id,
       stock: 56,
       description:
-        'A suit that will make anyone you touch fall in love with you',
+        "Cupid's secret weapon when he travels without his bow and arrows.",
       imageUrl: 'https://i.imgur.com/LYfvDGD.png'
     }),
     Product.create({
@@ -99,7 +99,7 @@ async function seed() {
       category: 'suit',
       productkeyId: productKey[1].id,
       stock: 56,
-      description: 'A suit that gives you the ability to swim 100mph',
+      description: 'A suit that gives you the ability to swim 100mph.',
       imageUrl: 'https://i.imgur.com/RYbe5Bl.png'
     }),
     Product.create({
@@ -108,17 +108,18 @@ async function seed() {
       category: 'suit',
       productkeyId: productKey[1].id,
       stock: 20,
-      description: 'Suit that forever smells like Blueberries',
+      description:
+        "Suit that forever smells like Blueberries, if that 'suits' you.",
       imageUrl: 'https://i.imgur.com/kllvxkv.png'
     }),
 
     Product.create({
-      name: 'Rich Suit',
-      price: 1000.0,
+      name: 'Crazy Rich Suit',
+      price: 3000.0,
       category: 'suit',
       productkeyId: productKey[1].id,
       stock: 10,
-      description: 'A suit that gives you unlimited cash',
+      description: 'A suit that gives you unlimited fake cash',
       imageUrl: ' https://i.imgur.com/8OcCJ5v.png'
     }),
     // ============= WATCHES =================
@@ -128,7 +129,8 @@ async function seed() {
       category: 'watch',
       productkeyId: productKey[0].id,
       stock: 10,
-      description: 'A watch that can slow down time',
+      description:
+        'Losing time on completing your tasks or project. Slow down time and control your fate.',
       imageUrl: 'https://i.imgur.com/BhUEgLo.png'
     }),
     Product.create({
@@ -137,7 +139,7 @@ async function seed() {
       category: 'watch',
       productkeyId: productKey[0].id,
       stock: 50,
-      description: 'You can turn into a Crocodile whenever You please',
+      description: 'You can turn into a Crocodile whenever you please',
       imageUrl: 'https://i.imgur.com/bXLnNXj.png'
     }),
     Product.create({
@@ -146,7 +148,7 @@ async function seed() {
       category: 'watch',
       productkeyId: productKey[0].id,
       stock: 50,
-      description: 'Shoots out banana peels when being chased',
+      description: 'Shoots out banana peels when being chased.',
       imageUrl: 'https://i.imgur.com/uSEr2C2.png'
     }),
     Product.create({
@@ -155,7 +157,8 @@ async function seed() {
       category: 'watch',
       productkeyId: productKey[0].id,
       stock: 100,
-      description: 'The Roly Rolex will let you get into any Nightclub/lounge',
+      description:
+        'The Roly Rolex will let you get into any nightclub or lounge.',
       imageUrl: 'https://i.imgur.com/c9WpcCN.png'
     }),
     Product.create({
@@ -164,8 +167,7 @@ async function seed() {
       category: 'watch',
       productkeyId: productKey[0].id,
       stock: 5,
-      description:
-        'The Teleporter will allow you to teleport too any country you choose',
+      description: 'The Teleporter will allow you to teleport too any country.',
       imageUrl: ' https://i.imgur.com/yQ8bIMY.jpg'
     }),
     // ============= SHOES =================
@@ -176,7 +178,7 @@ async function seed() {
       productkeyId: productKey[2].id,
       stock: 15,
       description:
-        'A shoe that looks cool, and has ability to turn your skin into Metal',
+        'A shoe that looks cool and has the ability to turn your skin into Metal',
       imageUrl: 'https://i.imgur.com/yniVYD7.png'
     }),
 
@@ -186,7 +188,7 @@ async function seed() {
       category: 'shoe',
       productkeyId: productKey[2].id,
       stock: 20,
-      description: 'A shoe that is fireproof and also fire',
+      description: 'A shoe that is renders you fireproof and shoots fire.',
       imageUrl: 'https://i.imgur.com/qYFRzx3.png'
     }),
     Product.create({
@@ -196,7 +198,7 @@ async function seed() {
       productkeyId: productKey[2].id,
       stock: 20,
       description:
-        'Once you try them on a baby is born somewhere & you become a dad',
+        'Once you try them on a baby is born somewhere and you become a dad.',
       imageUrl: 'https://i.imgur.com/Wnh7D2E.png'
     }),
     Product.create({
@@ -205,7 +207,7 @@ async function seed() {
       category: 'shoe',
       productkeyId: productKey[2].id,
       stock: 50,
-      description: 'Lets you walk on water',
+      description: 'Lets you walk on water.',
       imageUrl: 'https://i.imgur.com/upTr6ju.png'
     }),
     Product.create({
@@ -214,17 +216,18 @@ async function seed() {
       category: 'shoe',
       productkeyId: productKey[2].id,
       stock: 50,
-      description: 'lets you jump 50 stories high and absorbs the impact',
+      description:
+        'Lets you jump 50 stories high and absorbs the impact when you land.',
       imageUrl: 'https://i.imgur.com/LGNx554.png'
     }),
     Product.create({
-      name: 'Algo 300',
+      name: 'Jasen 1911',
       price: 200.0,
       category: 'shoe',
       productkeyId: productKey[2].id,
       stock: 25,
       description:
-        'Shoe that lets you know every answer to any algorithm in existence',
+        "Hailing from Fullstack Academy' Cohort 1911, become Jasen, the algos expert, once you wear them.",
       imageUrl: 'https://i.imgur.com/QIjVNtD.png'
     }),
     Product.create({

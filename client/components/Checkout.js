@@ -53,17 +53,22 @@ class Checkout extends Component {
   }
 
   render() {
-    const user = this.props.user
-    const orderId = this.props.userCart[0].id
-    return user.id ? (
+    let orderId
+    if (this.props.userCart.length) {
+      orderId = this.props.userCart[0].id
+    }
+
+    return this.props.user.id ? (
       <div>
         <div>
           <div className="shippingrow">
             <div>
               <ul>
                 <h4>Shipping Address</h4>
-                <li>{`${user.firstName} ${user.lastName}`}</li>
-                <li>{user.address}</li>
+                <li>{`${this.props.user.firstName} ${
+                  this.props.user.lastName
+                }`}</li>
+                <li>{this.props.user.address}</li>
               </ul>
             </div>
             <div>
@@ -96,29 +101,22 @@ class Checkout extends Component {
                 <h4>Subtotal: ${this.getTotalPrice()}</h4>
                 <h4>Tax: ${(this.getTotalPrice() * 0.08875).toFixed(2)}</h4>
                 <h4>Total: ${(this.getTotalPrice() * 1.08875).toFixed(2)}</h4>
+                <Link
+                  to={`/checkout/complete/${this.props.user.id.firstName}/${
+                    this.props.user.id.lastName
+                  }/${orderId}`}
+                >
+                  <button type="submit" onClick={this.submitOrder}>
+                    Place Order
+                  </button>
+                </Link>
               </ul>
             </div>
-          </div>
-          <div>
-            <Link
-              to={`/checkout/complete/${user.firstName}/${
-                user.lastName
-              }/${orderId}`}
-            >
-              <button type="submit" onClick={this.submitOrder}>
-                Place Order
-              </button>
-            </Link>
           </div>
         </div>
       </div>
     ) : (
-      <div>
-        <h3>Please sign up to proceed checkout</h3>
-        <Link to="/signup">
-          <button type="button">Sign Up</button>
-        </Link>
-      </div>
+      <div />
     )
   }
 }
