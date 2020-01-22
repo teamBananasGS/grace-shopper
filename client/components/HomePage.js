@@ -18,7 +18,7 @@ class HomePage extends React.Component {
     return (
       <div>
         {user.id ? (
-          <h4 className="welcome">{`Welcome, ${user.firstName} ${
+          <h4 className="welcome">{`Welcome back, ${user.firstName} ${
             user.lastName
           }!`}</h4>
         ) : (

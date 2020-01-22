@@ -1,5 +1,4 @@
 import React, {Component} from 'react'
-import Navbar from './navbar'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {loadSingleCategory} from '../store/actioncreators'
@@ -25,23 +24,23 @@ class SingleCategory extends Component {
       <div>
         <h3 className="allProductsTitle">All {category}</h3>
         <hr />
-        {selectedCategory.map(product => {
-          return (
-            <div className="product" key={product.id}>
-              <div id="allproductscontainer">
-                <div id="productList">
-                  <p>
+        <div id="allproductscontainer">
+          {selectedCategory.map(product => {
+            return (
+              <div className="product" key={product.id}>
+                <div>
+                  <div id="productList">
                     <Link to={`/products/${product.category}/${product.id}`}>
                       <img id="productImage" src={product.imageUrl} />
                       <br />
-                      <p className="centerProductname">{product.name}</p>
+                      <span className="centerProductname">{product.name}</span>
                     </Link>
-                  </p>
+                  </div>
                 </div>
               </div>
-            </div>
-          )
-        })}
+            )
+          })}
+        </div>
       </div>
     ) : (
       <h1>Cannot find page</h1>

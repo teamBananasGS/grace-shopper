@@ -9,7 +9,7 @@ import {
 class SingleProduct extends React.Component {
   constructor() {
     super()
-    this.handleAddToCart = this.handleAddToCart.bind(this)
+    this.userAddToCart = this.userAddToCart.bind(this)
     this.guestAddToCart = this.guestAddToCart.bind(this)
   }
 
@@ -17,7 +17,7 @@ class SingleProduct extends React.Component {
     this.props.onLoadSingleProduct()
   }
 
-  handleAddToCart(addedProduct) {
+  userAddToCart(addedProduct) {
     const cart = this.props.userCart
     this.props.onUpdateUserCart(cart, addedProduct)
   }
@@ -54,6 +54,8 @@ class SingleProduct extends React.Component {
   }
 
   render() {
+    const addButtonText =
+      this.props.selectedProduct.stock > 0 ? 'ADD TO CART' : 'OUT OF STOCK'
     const selectedProduct = this.props.selectedProduct
     return selectedProduct ? (
       <div>
@@ -69,9 +71,9 @@ class SingleProduct extends React.Component {
                 <button
                   type="submit"
                   className="addtocartButton"
-                  onClick={() => this.handleAddToCart(selectedProduct)}
+                  onClick={() => this.userAddToCart(selectedProduct)}
                 >
-                  ADD TO CART
+                  {addButtonText}
                 </button>
               ) : (
                 <button
@@ -79,7 +81,7 @@ class SingleProduct extends React.Component {
                   className="addtocartButton"
                   onClick={() => this.guestAddToCart(selectedProduct)}
                 >
-                  ADD TO CART
+                  {addButtonText}
                 </button>
               )}
             </div>
