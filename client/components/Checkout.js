@@ -58,7 +58,6 @@ class Checkout extends Component {
     const orderId = this.props.userCart[0].id
     return user.id ? (
       <div>
-        <Navbar />
         <div>
           <div className="shippingrow">
             <div>

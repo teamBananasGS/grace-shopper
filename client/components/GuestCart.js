@@ -43,7 +43,6 @@ class GuestCart extends Component {
 
     return guestCart.length ? (
       <div>
-        <Navbar />
         <h3 className="allProductsTitle"> Shopping Cart</h3> <hr />
         <div className="some-page-wrapper">
           {guestCart.map(product => {
@@ -95,7 +94,6 @@ class GuestCart extends Component {
       </div>
     ) : (
       <div>
-        <Navbar />
         <h2 className="allProductsTitle">Your Shopping Cart Is Empty</h2>
         <div>
           <img className="emptyCart" src="http://tny.im/ky1" />

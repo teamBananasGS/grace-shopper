@@ -66,7 +66,6 @@ class AllProducts extends Component {
     // console.log('total inventory', this.totalInventory())
     return (
       <div>
-        <Navbar />
         {allProducts.map(product => {
           return (
             <div className="adminProductContainer" key={product.id}>
