@@ -85,7 +85,6 @@ class SingleProduct extends React.Component {
     const selectedProduct = this.props.selectedProduct
     return selectedProduct ? (
       <div>
-        <Navbar />
         <div id="selectedProductContainer">
           <img id="selectedProductImage" src={selectedProduct.imageUrl} />
           <div id="selectedProductBio">
