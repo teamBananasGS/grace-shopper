@@ -21,7 +21,7 @@ class QuantityButton extends Component {
 
   decrement() {
     this.setState({
-      quantity: this.state.quantity > 0 ? this.state.quantity - 1 : 0
+      quantity: this.state.quantity > 1 ? this.state.quantity - 1 : 1
     })
   }
 

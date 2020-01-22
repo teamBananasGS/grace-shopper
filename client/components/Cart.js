@@ -39,7 +39,6 @@ class Cart extends Component {
       })
       this.props.onLoadUserCart(this.props.user.id)
       console.log('New Quantity', quantity)
-      alert('Quantity updated!')
     } catch (error) {
       console.error(error)
     }
@@ -51,7 +50,6 @@ class Cart extends Component {
         `/api/cart/delete/${productId}/${this.props.userCart[0].id}`
       )
       this.props.onLoadUserCart(this.props.user.id)
-      alert('Item removed!')
     } catch (error) {
       console.error(error)
     }

@@ -36,7 +36,6 @@ class GuestCheckout extends Component {
       this.setState({orderId: order.data.id})
       localStorage.clear()
       this.props.history.push(`/checkout/complete/guest/${this.state.orderId}`)
-      alert('Order placed!')
     } catch (error) {
       console.error(error)
     }

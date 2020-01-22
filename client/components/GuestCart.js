@@ -23,7 +23,6 @@ class GuestCart extends Component {
     }
     this.setState({guestCart: updateCart})
     localStorage.setItem('cart', JSON.stringify(updateCart))
-    alert('Updated quantity!')
   }
 
   handleRemoveItem(product, guestCart) {
@@ -31,7 +30,6 @@ class GuestCart extends Component {
     guestCart.splice(index, 1)
     this.setState({guestCart})
     localStorage.setItem('cart', JSON.stringify(guestCart))
-    alert(`Removed ${product.name}!`)
   }
 
   getTotalPrice(guestCart) {
@@ -42,7 +40,6 @@ class GuestCart extends Component {
 
   render() {
     let guestCart = JSON.parse(localStorage.getItem('cart'))
-    console.log(guestCart)
 
     return guestCart.length ? (
       <div>
