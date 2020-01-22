@@ -1,5 +1,4 @@
 import React, {Component} from 'react'
-import Navbar from './navbar'
 import {connect} from 'react-redux'
 import {loadUserCart} from '../store/actioncreators'
 import {Link} from 'react-router-dom'

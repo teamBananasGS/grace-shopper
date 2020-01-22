@@ -8,6 +8,7 @@ class HomePage extends React.Component {
   async componentDidMount() {
     if (this.props.user.id) {
       await Axios.get(`api/users/checkorder/${this.props.user.id}`)
+      this.props.onLoadUserCart(this.props.user.id)
     }
   }
 

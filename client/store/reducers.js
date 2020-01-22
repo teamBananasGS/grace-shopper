@@ -3,6 +3,7 @@ import {
   GET_SINGLE_CATEGORY,
   GET_SINGLE_PRODUCT,
   GET_USER_CART,
+  UPDATE_USER_CART,
   REMOVE_USER_CART,
   GET_ALL_USERS
 } from './actioncreators'
@@ -48,6 +49,8 @@ export const singleProductReducer = (state = {}, action) => {
 export const userCartReducer = (state = [], action) => {
   switch (action.type) {
     case GET_USER_CART:
+      return action.userCart
+    case UPDATE_USER_CART:
       return action.userCart
     case REMOVE_USER_CART:
       return action.userCart

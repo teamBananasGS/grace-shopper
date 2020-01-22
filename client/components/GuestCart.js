@@ -1,5 +1,4 @@
 import React, {Component} from 'react'
-import Navbar from './navbar'
 import {Link} from 'react-router-dom'
 import QuantityButton from './QuantityButton'
 
