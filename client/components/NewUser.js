@@ -32,7 +32,6 @@ class newUser extends Component {
   render() {
     return (
       <div>
-        <Navbar />
         <SignupForm
           state={this.state}
           handleChange={this.handleChange}

@@ -1,88 +1,74 @@
 import React from 'react'
-import {Navbar, Login} from './components'
-import Routes from './routes'
-import {connect} from 'react-redux'
-import {loadUserCart} from './store/actioncreators'
-import Axios from 'axios'
-import {Link} from 'react-router-dom'
+import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
+import history from './history'
+import store from './store'
+import userHome from './components/user-home'
+import SingleCategory from './components/SingleCategory'
+import SingleProduct from './components/SingleProduct'
+import Cart from './components/Cart'
+import Checkout from './components/Checkout'
+import GuestCheckOut from './components/GuestCheckout'
+import GuestCompleteOrder from './components/GuestCompleteOrder'
+import CompleteOrder from './components/CompleteOrder'
+import AllUsers from './components/allusers'
+import AllProducts from './components/allproducts'
+import Admin from './components/admin'
+import {Login} from './components'
+import NewUser from './components/NewUser'
+import HomePage from './components/HomePage'
+import Navbar from './components/navbar'
 
-class App extends React.Component {
-  async componentDidMount() {
-    //on login, check if the user exists in database
-    //check to see if there is an existing 'pending' order for that user
-    //load the cart related to that orderId
-    if (this.props.user.id) {
-      await Axios.get(`api/users/checkorder/${this.props.user.id}`)
-    }
-  }
-
-  render() {
-    const {user} = this.props
-    return (
+const App = () => {
+  return (
+    <div>
+      <Navbar />
       <div>
-        <Navbar />
-        {/* <Routes /> */}
-        {user.id ? (
-          <h4 className="welcome">{`Welcome, ${user.firstName} ${
-            user.lastName
-          }!`}</h4>
-        ) : (
-          <div />
-        )}
-        <div className="homeImages">
-          <img
-            src="images/PowerSuitsHomePageMan.png"
-            alt="image of Men wearing Suits"
+        <Switch>
+          <Route exact path="/" component={HomePage} user={store.user} />
+          <Route exact path="/home" component={userHome} user={store.user} />
+          <Route exact path="/login" component={Login} />
+          <Route exact path="/signup" component={NewUser} />
+          <Route
+            exact
+            path="/products/:category"
+            component={SingleCategory}
+            user={store.user}
           />
-        </div>
-        <div className="productHolder">
-          <div className="leftpic">
-            <Link to="/products/watch">
-              <img src="http://tny.im/krj" />
-            </Link>
-          </div>
-          <div className="midpic">
-            <Link to="/products/suit">
-              {' '}
-              <img src="http://tny.im/kri" />
-            </Link>
-          </div>
-          <div className="rightpic">
-            <Link to="/products/shoe">
-              <img src="http://tny.im/krk" />
-            </Link>
-          </div>
-        </div>
-        <div className="homeImages2">
-          <img
-            src="images/PowerSuitsForher.png"
-            alt="image of Women wearing Suits"
+          <Route
+            exact
+            path="/products/:category/:productId"
+            component={SingleProduct}
           />
-        </div>
-        <div className="homeImages2">
-          <img
-            src="images/PowerSuitGuarantee.png"
-            alt="image of PowerSuits Standards"
+          <Route exact path="/cart" component={Cart} />
+          <Route exact path="/checkout" component={Checkout} />
+          <Route exact path="/checkout/guest" component={GuestCheckOut} />
+          <Route
+            exact
+            path="/checkout/complete/guest/:orderId"
+            component={GuestCompleteOrder}
           />
-        </div>
+          <Route
+            exact
+            path="/checkout/complete/:first/:last/:order"
+            component={CompleteOrder}
+          />
+          <Route exact path="/admin" component={Admin} user={store.user} />
+          <Route
+            exact
+            path="/admin/products"
+            component={AllProducts}
+            user={store.user}
+          />
+          <Route
+            exact
+            path="/admin/users"
+            component={AllUsers}
+            user={store.user}
+          />
+        </Switch>
       </div>
-    )
-  }
+    </div>
+  )
 }
 
-const mapStateToProps = state => {
-  return {
-    user: state.user
-  }
-}
-
-const mapDispatchToProps = (dispatch, ownProps) => {
-  return {
-    onLoadUserCart: function(userId) {
-      const thunk = loadUserCart(userId)
-      dispatch(thunk)
-    }
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(App)
+export default App

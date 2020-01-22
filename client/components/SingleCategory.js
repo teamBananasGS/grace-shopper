@@ -23,7 +23,6 @@ class SingleCategory extends Component {
     else category += 's'
     return selectedCategory ? (
       <div>
-        <Navbar />
         <h3 className="allProductsTitle">All {category}</h3>
         <hr />
         {selectedCategory.map(product => {

@@ -50,7 +50,6 @@ class GuestCheckout extends Component {
 
     return localStorage.getItem('cart') ? (
       <div>
-        <Navbar />
         <div className="guestcheckoutbox">
           <h4>Guest Checkout</h4>
           <hr />
@@ -118,7 +117,6 @@ class GuestCheckout extends Component {
       </div>
     ) : (
       <div>
-        <Navbar />
         <h2 className="allProductsTitle">Your Shopping Cart Is Empty</h2>
         <div>
           <img className="emptyCart" src="http://tny.im/ky1" />
