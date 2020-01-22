@@ -50,9 +50,20 @@ nav a {
   color: black;
 }
 
-/* #selectedProductBio {
-  margin-top: 275px;
-} */
+#selectedProductContainer {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+#selectedProductContainer img {
+  width: 30%;
+}
+
+#selectedProductBio {
+  display: block;
+  align-content: center;
+}
 
 #productImageInCart {
   height: 300px;
@@ -131,24 +142,14 @@ form div {
   display: inline-block;
 }
 
-h4 {
+/* h4 {
   font-style: italic;
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   display: flex;
   flex-direction: row;
   justify-content: center;
   text-align: center;
-}
-
-#selectedProductContainer {
-  display: flex;
-  justify-content: space-evenly;
-  justify-content: flex-start;
-}
-
-#selectedProductContainer img {
-  width: 30%;
-}
+} */
 
 .addtocartButton {
   font-family: Helvetica, sans-serif;
@@ -157,6 +158,11 @@ h4 {
   color: #e7e7e7;
   padding: 10px;
   border-color: #333;
+}
+
+.addtocartButton:hover {
+  background-color: white;
+  color: #333;
 }
 
 .emptyCart {
@@ -291,6 +297,10 @@ hr {
   width: 5em;
 }
 
+.guestcheckoutbox h3 {
+  text-align: center;
+}
+
 #adminProductImage {
   height: 75px;
   width: 50px;
@@ -375,4 +385,17 @@ hr {
 #totalprice span {
   padding-left: 10px;
   padding-right: 10px;
+}
+
+.placeorder {
+  background-color: #333;
+  color: white;
+  border-color: #333;
+  margin: 20px;
+  padding: 10px;
+}
+
+.placeorder:hover {
+  background-color: white;
+  color: #333;
 }

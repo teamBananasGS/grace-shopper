@@ -1,7 +1,6 @@
 import React, {Component} from 'react'
 import Axios from 'axios'
 import SignupForm from './SignupForm'
-import Navbar from './navbar'
 
 class newUser extends Component {
   constructor() {

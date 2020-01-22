@@ -17,9 +17,6 @@ class Cart extends Component {
 
   componentDidMount() {
     this.props.loadInitialData()
-    if (this.props.user.id) {
-      this.props.onLoadUserCart(this.props.user.id)
-    }
   }
 
   getTotalPrice() {
