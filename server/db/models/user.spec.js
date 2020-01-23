@@ -32,7 +32,7 @@ describe('User model', () => {
     }) // end describe('correctPassword')
   }) // end describe('instanceMethods')
 
-  describe('Schema', () => {
+  describe('User Schema', () => {
     it('requires a "firstName" string', async () => {
       try {
         await User.create()
@@ -49,7 +49,7 @@ describe('User model', () => {
       }
     })
 
-    it('requires a "password" length to be atleast 2string', async () => {
+    it('requires a "password" length to be atleast 3 ', async () => {
       try {
         await User.create({password: '1'})
         throw new Error('User successfully created with a length less than 2')
