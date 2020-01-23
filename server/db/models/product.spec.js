@@ -19,7 +19,7 @@ describe('Products model', () => {
         description: 'Suit that gives you superman like powers'
       })
     })
-    // CHECKS THAT NAME ATLEAST HAS 1 CHARACTER
+    // CHECKS THAT A NAME ATLEAST HAS 1 CHARACTER
     it('requires name field to not be empty', () => {
       expect(ogSuit.name).length.to.be.greaterThan(1)
     })
